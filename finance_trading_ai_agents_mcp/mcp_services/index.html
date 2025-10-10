@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Financial Analysis Tools MCP Server</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid #667eea;
+        }
+        .title {
+            font-size: 2.5em;
+            color: #667eea;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+        .subtitle {
+            font-size: 1.2em;
+            color: #666;
+            margin-bottom: 20px;
+        }
+        .github-banner {
+            background: linear-gradient(90deg, #24292e, #0366d6);
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+        .github-banner a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+        .github-banner a:hover {
+            text-decoration: underline;
+        }
+        .endpoint {
+            background: #f8f9fa;
+            border-left: 4px solid #667eea;
+            margin: 15px 0;
+            padding: 20px;
+            border-radius: 0 8px 8px 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+        .endpoint-title {
+            font-weight: bold;
+            color: #667eea;
+            font-size: 1.1em;
+            margin-bottom: 8px;
+        }
+        .endpoint-url {
+            font-family: 'Courier New', monospace;
+            background: #e9ecef;
+            padding: 5px 8px;
+            border-radius: 4px;
+            margin: 5px 0;
+            display: inline-block;
+        }
+        .section-title {
+            font-size: 1.5em;
+            color: #667eea;
+            margin: 25px 0 15px 0;
+            padding-bottom: 5px;
+            border-bottom: 2px solid #e9ecef;
+        }
+        .departments {
+            background: #e7f3ff;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #b3d9ff;
+            margin: 10px 0;
+        }
+        .code-block {
+            background: #2d3748;
+            color: #e2e8f0;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            overflow-x: auto;
+            margin: 15px 0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        .links-section {
+            background: #f0f8ff;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 30px;
+            text-align: center;
+            border: 1px solid #b3d9ff;
+        }
+        .links-section a {
+            color: #0066cc;
+            text-decoration: none;
+            font-weight: bold;
+            margin: 0 15px;
+            padding: 8px 16px;
+            border-radius: 5px;
+            background: white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            display: inline-block;
+            margin-top: 10px;
+            transition: all 0.3s ease;
+        }
+        .links-section a:hover {
+            background: #667eea;
+            color: white;
+            transform: translateY(-2px);
+        }
+        .star-button {
+            background: linear-gradient(90deg, #ffd700, #ffed4e);
+            color: #333;
+            padding: 12px 24px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1em;
+            box-shadow: 0 4px 12px rgba(255,215,0,0.3);
+            transition: all 0.3s ease;
+        }
+        .star-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(255,215,0,0.4);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1 class="title">🚀 Financial Analysis Tools MCP Server</h1>
+            <p class="subtitle">Powered by <a href="https://www.aitrados.com" target="_blank">aitrados.com</a></p>
+        </div>
+
+        <div class="github-banner">
+            ⭐ <strong>Like this project?</strong>
+            <a href="https://github.com/aitrados/finance-trading-ai-agents-mcp" target="_blank" class="star-button">
+                🌟 Give us a Star to follow the project 🌟
+            </a>
+            <br><br>
+            <a href="https://github.com/aitrados/finance-trading-ai-agents-mcp" target="_blank">
+                📁 View source code and full documentation
+            </a>
+        </div>
+
+        <h2 class="section-title">📊 Available Endpoints</h2>
+
+        <div class="endpoint">
+            <div class="endpoint-title">1. Get Custom MCP Configuration (POST):</div>
+            <div class="endpoint-url">URL: {base_url}/mcp.json</div>
+            <div><strong>Description:</strong> Get customized MCP server configuration by selecting specific departments</div>
+            <div><strong>Method:</strong> POST</div>
+            <div><strong>Body:</strong> <code>{{"departments": ["news", "economic_calendar", "traditional_indicator"]}}</code></div>
+        </div>
+
+        <div class="endpoint">
+            <div class="endpoint-title">2. Get All MCP Servers (GET):</div>
+            <div class="endpoint-url">URL: {base_url}/mcp_servers.json</div>
+            <div><strong>Description:</strong> Get configuration for all available MCP servers</div>
+            <div><strong>Method:</strong> GET</div>
+        </div>
+
+        <h2 class="section-title">📋 Available Departments</h2>
+        <div class="departments">
+            {departments}
+        </div>
+
+        <h2 class="section-title">💡 Usage Examples</h2>
+
+        <div class="code-block">
+# Get custom configuration for specific departments<br><br>
+curl -X POST "{base_url}/mcp.json" \<br>
+     -H "Content-Type: application/json" \<br>
+     -d '{"departments": ["news", "economic_calendar"]}'<br><br>
+
+# Get all available servers<br><br>
+curl -X GET "{base_url}/mcp_servers.json"
+        </div>
+
+        <h2 class="section-title">🔧 Integration</h2>
+        <p>Use the returned configuration with your MCP client to access financial analysis tools.</p>
+
+        <div class="links-section">
+            <h3>🔗 Useful Links</h3>
+            <a href="https://docs.aitrados.com/" target="_blank">📚 Documentation</a>
+            <a href="https://github.com/aitrados/finance-trading-ai-agents-mcp" target="_blank">📁 GitHub Repository</a>
+            <a href="https://github.com/aitrados/finance-trading-ai-agents-mcp/issues" target="_blank">🐛 Bug Tracker</a>
+            <a href="mailto:support@aitrados.com">💬 Support</a>
+            <a href="https://www.aitrados.com" target="_blank">🌐 Official Website</a>
+
+            <br><br>
+            <div style="margin-top: 20px;">
+                <a href="https://github.com/aitrados/finance-trading-ai-agents-mcp" target="_blank" class="star-button">
+                    ⭐ Star us on GitHub! ⭐
+                </a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

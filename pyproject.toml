@@ -1,0 +1,69 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+
+[project]
+# --- Required Fields ---
+# The name users will use to install your package via pip.
+name = "finance-trading-ai-agents-mcp"
+# The initial version of your package. You must increment this for every new release.
+version = "0.0.1"
+
+# --- Recommended Fields ---
+authors = [
+  { name="Alexander", email="support@aitrados.com" },
+]
+description = "A free, specialized MCP server for financial analysis and quantitative trading. Provides one-click setup for local financial MCP services with department-based architecture simulating financial company operations. Supports traditional indicators, price action analysis, economic calendar, fundamental analysis, and news integration for seamless LLM interaction and algorithmic trading."
+# Points to your README file for the long description on PyPI.
+
+keywords = ["finance mcp","financial mcp", "finance agent","streaming ohlc", "trading mcp", "ai trading","ai mcp"]
+
+readme = "README.md"
+# Specifies the Python versions your project supports.
+requires-python = ">=3.10"
+# Specifies the license of your project.
+license = { text = "MIT License" }
+
+# --- Classifiers for PyPI ---
+# These help users find your project.
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Financial and Insurance Industry",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Office/Business :: Financial",
+    "Topic :: Office/Business :: Financial :: Investment",
+    "Topic :: Scientific/Engineering :: Information Analysis",
+        "Environment :: Console",
+    "Environment :: Web Environment",
+
+]
+
+# --- Dependencies ---
+# A list of other packages that your project needs to run.
+dependencies = [
+    "aitrados-api",
+    "fastapi",
+    "fastmcp",
+
+]
+
+# --- Project URLs ---
+# These links will be displayed on your PyPI project page.
+[project.urls]
+"Homepage" = "https://github.com/aitrados/finance-trading-ai-agents-mcp"
+"Bug Tracker" = "https://github.com/aitrados/finance-trading-ai-agents-mcp/issues"
+"Repository" = "https://github.com/aitrados/finance-trading-ai-agents-mcp"
+[tool.hatch.build.targets.wheel]
+packages = ["finance_trading_ai_agents_mcp"]
+
+[project.scripts]
+finance-trading-ai-agents-mcp = "finance_trading_ai_agents_mcp.mcp_cli:mcp_cli_command"
