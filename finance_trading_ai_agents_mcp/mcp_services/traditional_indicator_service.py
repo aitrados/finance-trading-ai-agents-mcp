@@ -18,7 +18,7 @@ from finance_trading_ai_agents_mcp.mcp_services.traditional_indicator_operations
 from finance_trading_ai_agents_mcp.utils.common_utils import get_env_value, mcp_get_api_params, show_mcp_result
 
 mcp = FastMCP("Traditional indicators")
-ohlc_list_tool(mcp)
+
 
 mcp_app=mcp.http_app(path="/",transport="streamable-http",stateless_http=True)
 
@@ -76,3 +76,4 @@ async def get_traditional_indicators(context: Context,
         result=f"{e}"
         show_mcp_result(mcp, result,True)
         return result
+#ohlc_list_tool(mcp)

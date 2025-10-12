@@ -1,3 +1,24 @@
+---
+weight: 1000
+date: "2025-09-03T22:37:22+01:00"
+draft: false
+author: "VON"
+title: "Custom function tool"
+icon: "event"
+toc: true
+description: "Append custom function tools to the current MCP server"
+publishdate: "2025-09-12T22:37:22+01:00"
+tags: ["Economic Calendar","Economic Calendar MCP", "Macro", "Fundamental", "MCP", "LLM"]
+---
+
+If you need to add more function tools to the existing mcp server, the following is an example of adding
+
+## Full EXAMPLES
+
+https://github.com/aitrados/finance-trading-ai-agents-mcp/tree/main/finance_trading_ai_agents_mcp/examples/addition_custom_mcp_examples
+
+
+```python
 from fastmcp import Context, FastMCP
 from typing import List
 from pydantic import Field
@@ -137,11 +158,6 @@ class AdditionCustomMcpExample(AdditionCustomMcpInterface):
             """Custom cross-timeframe indicator analysis tool"""
             intervals_str = ", ".join(intervals)
             return f"Custom cross-timeframe {primary_indicator} analysis for {full_symbol} across intervals: {intervals_str}"
+    
 
-    def add_mcp_server_name(self)->FastMCP:
-        ## http://127.0.0.1:11999/mcp_servers.json and see the custom_mcp_server1 server
-        mcp = FastMCP("custom_mcp_server1")
-        @mcp.tool(title="custom_mcp_server_name")
-        async def get_custom_abc(context: Context, full_symbol: str = "STOCK:US:AAPL", interval: str = "DAY"):
-            return f"Custom indicator data for {full_symbol} on {interval}"
-        return mcp
+```

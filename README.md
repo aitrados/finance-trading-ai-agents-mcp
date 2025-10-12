@@ -16,12 +16,12 @@ A free, professional, open-source financial analysis and quantitative trading MC
 - ⚡ High performance: Real-time streaming OHLC data processing
 - 🔧 Extensible: Support for custom MCP services
 
-![homepage](assets/mcp-homepage.png)
+![homepage](https://raw.githubusercontent.com/aitrados/finance-trading-ai-agents-mcp/refs/heads/main/assets/mcp-homepage.png)
 
 
 
 ## DOCS
-- Full Documentation: https://docs.aitrados.com
+- Full Documentation: https://docs.aitrados.com/en/docs/finance-trading-ai-agents-mcp/quickstart/
 
 ## Free secret_key (AITRADOS_SECRET_KEY) for finance data
 Get it here: https://www.aitrados.com/
@@ -29,22 +29,22 @@ Get it here: https://www.aitrados.com/
 
 ## Basic system prompt_words embedded in your agent system
 
-##### [basic_system_prompt_words/de.md](basic_system_prompt_words/de.md) Deutsch
-##### [basic_system_prompt_words/en.md](basic_system_prompt_words/en.md) English
-##### [basic_system_prompt_words/fr.md](basic_system_prompt_words/fr.md) Français
-##### [basic_system_prompt_words/ja.md](basic_system_prompt_words/ja.md) 日本語
-##### [basic_system_prompt_words/ko.md](basic_system_prompt_words/ko.md) 한국어
-##### [basic_system_prompt_words/ru.md](basic_system_prompt_words/ru.md) Русский
-##### [basic_system_prompt_words/zh_cn.md](basic_system_prompt_words/zh_cn.md) 简体中文
-##### [basic_system_prompt_words/zh_tw.md](basic_system_prompt_words/zh_tw.md) 繁体中文
+##### [basic_system_prompt_words/de.md](https://github.com/aitrados/finance-trading-ai-agents-mcp/blob/main/basic_system_prompt_words/de.md) Deutsch
+##### [basic_system_prompt_words/en.md](https://github.com/aitrados/finance-trading-ai-agents-mcp/blob/main/basic_system_prompt_words/en.md) English
+##### [basic_system_prompt_words/fr.md](https://github.com/aitrados/finance-trading-ai-agents-mcp/blob/main/basic_system_prompt_words/fr.md) Français
+##### [basic_system_prompt_words/ja.md](https://github.com/aitrados/finance-trading-ai-agents-mcp/blob/main/basic_system_prompt_words/ja.md) 日本語
+##### [basic_system_prompt_words/ko.md](https://github.com/aitrados/finance-trading-ai-agents-mcp/blob/main/basic_system_prompt_words/ko.md) 한국어
+##### [basic_system_prompt_words/ru.md](https://github.com/aitrados/finance-trading-ai-agents-mcp/blob/main/basic_system_prompt_words/ru.md) Русский
+##### [basic_system_prompt_words/zh_cn.md](https://github.com/aitrados/finance-trading-ai-agents-mcp/blob/main/basic_system_prompt_words/zh_cn.md) 简体中文
+##### [basic_system_prompt_words/zh_tw.md](https://github.com/aitrados/finance-trading-ai-agents-mcp/blob/main/basic_system_prompt_words/zh_tw.md) 繁体中文
 
 
 ## Examples
 
-##### [finance_trading_ai_agents_mcp/examples/addition_custom_mcp_examples](finance_trading_ai_agents_mcp/examples/addition_custom_mcp_examples)
-##### [finance_trading_ai_agents_mcp/examples/mcp_clients](finance_trading_ai_agents_mcp/examples/mcp_clients)
-##### [finance_trading_ai_agents_mcp/examples/run_mcp_examples](finance_trading_ai_agents_mcp/examples/run_mcp_examples)
-##### [finance_trading_ai_agents_mcp/examples/env_example.py](finance_trading_ai_agents_mcp/examples/env_example.py)
+##### [finance_trading_ai_agents_mcp/examples/addition_custom_mcp_examples](https://github.com/aitrados/finance-trading-ai-agents-mcp/blob/main/finance_trading_ai_agents_mcp/examples/addition_custom_mcp_examples)
+##### [finance_trading_ai_agents_mcp/examples/mcp_clients](https://github.com/aitrados/finance-trading-ai-agents-mcp/blob/main/finance_trading_ai_agents_mcp/examples/mcp_clients)
+##### [finance_trading_ai_agents_mcp/examples/run_mcp_examples](https://github.com/aitrados/finance-trading-ai-agents-mcp/blob/main/finance_trading_ai_agents_mcp/examples/run_mcp_examples)
+##### [finance_trading_ai_agents_mcp/examples/env_example.py](https://github.com/aitrados/finance-trading-ai-agents-mcp/blob/main/finance_trading_ai_agents_mcp/examples/env_example.py)
 
 
 ## 📦 Installation

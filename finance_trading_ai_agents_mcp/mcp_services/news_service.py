@@ -32,7 +32,7 @@ async def get_latest_news_list(context: Context,
         params = mcp_get_api_params(context, params)
         ohlc_latest = await api_interface.api_client.news.a_news_latest(**params)
 
-        result=CommonControl(ohlc_latest).result(empty_data_result="Since no data was pulled, please stop the analysis and tell them to skip this analysis.").mcp_result
+        result=CommonControl(ohlc_latest).result(empty_data_result="No recent news found.").mcp_result
         show_mcp_result(mcp,result)
         return result
     except Exception as e:
