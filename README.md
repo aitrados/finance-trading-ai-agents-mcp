@@ -1,3 +1,5 @@
+[![MseeP.ai Security Assessment Badge](https://mseep.net/pr/aitrados-finance-trading-ai-agents-mcp-badge.png)](https://mseep.ai/app/aitrados-finance-trading-ai-agents-mcp)
+
 # Finance Trading AI Agents MCP
 
 [![PyPI version](https://badge.fury.io/py/finance-trading-ai-agents-mcp.svg)](https://badge.fury.io/py/finance-trading-ai-agents-mcp)
