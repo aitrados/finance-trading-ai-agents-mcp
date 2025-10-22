@@ -3,7 +3,8 @@ import time
 from aitrados_api.common_lib.common import is_debug
 from fastmcp import FastMCP, Context
 
-from finance_trading_ai_agents_mcp.api.apiinterface import api_interface
+
+from aitrados_api.trade_middleware_service.trade_middleware_service_instance import AitradosApiServiceInstance
 from finance_trading_ai_agents_mcp.mcp_result_control.common_control import CommonControl
 from finance_trading_ai_agents_mcp.utils.common_utils import mcp_get_api_params, show_mcp_result
 
@@ -30,7 +31,7 @@ async def get_latest_news_list(context: Context,
             "limit": limit,
         }
         params = mcp_get_api_params(context, params)
-        ohlc_latest = await api_interface.api_client.news.a_news_latest(**params)
+        ohlc_latest = await AitradosApiServiceInstance.api_client.news.a_news_latest(**params)
 
         result=CommonControl(ohlc_latest).result(empty_data_result="No recent news found.").mcp_result
         show_mcp_result(mcp,result)

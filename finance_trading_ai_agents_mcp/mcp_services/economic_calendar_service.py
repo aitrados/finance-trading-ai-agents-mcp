@@ -1,16 +1,9 @@
-import time
-import traceback
-import inspect
-
-from aitrados_api.common_lib.common import is_debug
 from aitrados_api.common_lib.contant import ApiDataFormat, EventImpact
 from fastmcp import FastMCP, Context
 from pydantic import Field
-
-from finance_trading_ai_agents_mcp.api.apiinterface import api_interface
 from finance_trading_ai_agents_mcp.mcp_result_control.common_control import CommonControl
 from finance_trading_ai_agents_mcp.utils.common_utils import mcp_get_api_params, show_mcp_result
-
+from aitrados_api.trade_middleware_service.trade_middleware_service_instance import AitradosApiServiceInstance
 mcp = FastMCP("economic_calendar")
 
 mcp_app = mcp.http_app(path="/", transport="streamable-http", stateless_http=True)
@@ -37,7 +30,7 @@ async def get_economic_calendar_event_codes(context: Context,
         }
         empty_data_result = f"No event codes found"
         params = mcp_get_api_params(context, params)
-        latest_events = await api_interface.api_client.economic.a_event_codes(**params)
+        latest_events = await AitradosApiServiceInstance.api_client.economic.a_event_codes(**params)
         result=CommonControl(latest_events).result(empty_data_result=empty_data_result).mcp_result
         show_mcp_result(mcp,result)
         return result
@@ -84,7 +77,7 @@ async def get_upcoming_economic_calendar_event_list(context: Context,
         }
         empty_data_result = f"No upcoming economic calendar events found"
         params = mcp_get_api_params(context, params)
-        latest_events = await api_interface.api_client.economic.a_latest_events(**params)
+        latest_events = await AitradosApiServiceInstance.api_client.economic.a_latest_events(**params)
 
         result=CommonControl(latest_events).result(empty_data_result=empty_data_result).mcp_result
         show_mcp_result(mcp,result)
@@ -132,7 +125,7 @@ async def get_latest_economic_calendar_event_list(context: Context,
         }
         empty_data_result = f"No recent economic calendar events found"
         params = mcp_get_api_params(context, params)
-        latest_events = await api_interface.api_client.economic.a_latest_events(**params)
+        latest_events = await AitradosApiServiceInstance.api_client.economic.a_latest_events(**params)
         result=CommonControl(latest_events).result(empty_data_result=empty_data_result).mcp_result
         show_mcp_result(mcp,result)
         return result

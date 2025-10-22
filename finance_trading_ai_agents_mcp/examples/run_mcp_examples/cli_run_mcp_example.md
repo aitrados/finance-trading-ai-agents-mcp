@@ -12,6 +12,7 @@ REM Windows batch file to run MCP with environment variables
 
 echo Setting up environment variables...
 set DEBUG=0
+set ENABLE_RPC_PUBSUB_SERVICE=0
 set AITRADOS_SECRET_KEY=YOUR_SECRET_KEY
 #set OHLC_LIMIT_FOR_LLM=20
 #set RENAME_COLUMN_NAME_MAPPING_FOR_LLM=interval:timeframe,
@@ -34,6 +35,7 @@ pause
 ```shell
 export DEBUG=0
 export AITRADOS_SECRET_KEY="YOUR_SECRET_KEY"
+#export ENABLE_RPC_PUBSUB_SERVICE=0
 #export OHLC_LIMIT_FOR_LLM=20
 #export RENAME_COLUMN_NAME_MAPPING_FOR_LLM="interval:timeframe,"
 #export OHLC_COLUMN_NAMES_FOR_LLM="timeframe,close_datetime,open,high,low,close,volume"

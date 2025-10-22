@@ -1,11 +1,11 @@
 import json
 import re
-from copy import deepcopy
-
 from aitrados_api.common_lib.any_list_data_to_format_data import AnyListDataToFormatData
 from aitrados_api.common_lib.common import to_format_data
+from aitrados_api.latest_ohlc_multi_timeframe_alignment_flow.unique_name_generator import UniqueNameGenerator
+from aitrados_api.universal_interface.timeframe_item_management import TimeframeItemManager
 
-from finance_trading_ai_agents_mcp.api.apiinterface import api_interface
+
 from finance_trading_ai_agents_mcp.mcp_services.global_instance import rename_column_name_mapping, filter_column_names, \
     default_ohlc_limit
 
@@ -28,9 +28,9 @@ class LiveStreamingOriginalOhlcOperation:
 
     async def get_original_result(self, item_data,  is_eth):
 
-        name = api_interface.timeframe_item_manager.get_name(item_data=item_data, is_eth=is_eth)
-        api_interface.timeframe_item_manager.add_item(item_data=item_data, name=name, is_eth=is_eth)
-        result = await api_interface.timeframe_item_manager.aget_data_from_map(name=name,
+        name = UniqueNameGenerator.get_original_name(item_data=item_data, is_eth=is_eth)
+        TimeframeItemManager.add_item(item_data=item_data, name=name, is_eth=is_eth)
+        result = await TimeframeItemManager.aget_data_from_map(name=name,
                                                                                empty_data_result="Since no data was pulled, please stop the analysis and tell them to skip this analysis.")
         self.result = self.__get_original_streaming_ohlc_data(result)
 

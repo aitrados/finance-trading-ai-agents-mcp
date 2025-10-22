@@ -1,7 +1,9 @@
 from abc import ABC
 
+from aitrados_api.trade_middleware_service.trade_middleware_service_instance import AitradosApiServiceInstance
 from fastmcp import FastMCP, Context
 
+from aitrados_api.universal_interface.timeframe_item_management import TimeframeItemManager
 from finance_trading_ai_agents_mcp.mcp_services.global_instance import custom_mcp_server
 
 '''
@@ -21,26 +23,25 @@ class AdditionCustomMcpInterface(ABC):
     for economic calendar, news, price action, and traditional indicator analysis.
 
     Available API Access:
-    - self.api_interface.api_client: REST API client for data retrieval
-    - self.api_interface.ws_client: WebSocket client for real-time data streaming
-    - self.api_interface.timeframe_manager: Multi-timeframe OHLC data management
-    - self.api_interface.timeframe_item_manager: Timeframe item management utilities
+    - AitradosApiServiceInstance.api_client: REST API client for data retrieval
+    - AitradosApiServiceInstance.ws_client: WebSocket client for real-time data streaming
+    - AitradosApiServiceInstance.latest_ohlc_chart_flow_manager: ohlc chart flow roll
+    - AitradosApiServiceInstance.latest_ohlc_multi_timeframe_manager Multi-timeframe OHLC data management
+    - TimeframeItemManager: Timeframe item management utilities
 
     Usage:
         class MyCustomMcp(AdditionCustomMcpInterface):
             def custom_news_mcp(self):
                 @news_mcp.tool(title="My Custom Tool")
                 async def my_custom_function(context: Context, full_symbol: str = "STOCK:US:AAPL"):
-                    # Access API data through self.api_interface
-                    data = await self.api_interface.api_client.get_some_data()
+                    # Access API data through AitradosApiServiceInstance
+                    data = await AitradosApiServiceInstance.api_client.get_some_data()
                     return data
     """
 
     def __init__(self):
-        from finance_trading_ai_agents_mcp.api.apiinterface import api_interface as api_interface_
-        self.api_interface=api_interface_
-
         self._initialize()
+
 
     def _initialize(self):
         """Initialize all custom MCP tools"""

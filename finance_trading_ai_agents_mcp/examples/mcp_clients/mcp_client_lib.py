@@ -1,4 +1,6 @@
-from finance_trading_ai_agents_mcp import RemoteCurl
+from aitrados_api.common_lib.common_remote_curl import RemoteCurl
+
+
 def get_client_mcp_config(departments: list[str],mcp_base_url="http://127.0.0.1:11999") -> dict:
     """
     '''

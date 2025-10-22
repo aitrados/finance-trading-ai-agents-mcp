@@ -7,15 +7,17 @@ from typing import List, Union
 from aitrados_api.common_lib.any_list_data_to_format_data import  AnyListDataToFormatData
 
 from aitrados_api.common_lib.contant import ApiDataFormat
+from aitrados_api.latest_ohlc_multi_timeframe_alignment_flow.unique_name_generator import UniqueNameGenerator
 from fastmcp import FastMCP, Context
 from pydantic import Field
 
+from aitrados_api.universal_interface.timeframe_item_management import TimeframeItemManager
 from finance_trading_ai_agents_mcp.mcp_result_control.common_control import CommonControl
 from finance_trading_ai_agents_mcp.mcp_services.global_instance import rename_column_name_mapping, filter_column_names, \
     default_ohlc_limit
 from finance_trading_ai_agents_mcp.utils.common_utils import split_full_symbol, mcp_get_api_params, get_env_value, \
     show_mcp_result
-from finance_trading_ai_agents_mcp.api.apiinterface import api_interface
+from aitrados_api.trade_middleware_service.trade_middleware_service_instance import AitradosApiServiceInstance
 
 
 
@@ -57,9 +59,9 @@ class StreamingOhlcOperation:
 
 
 
-        name = api_interface.timeframe_item_manager.get_name(item_data=item_data, is_eth=is_eth)
-        api_interface.timeframe_item_manager.add_item(item_data=item_data, name=name, is_eth=is_eth)
-        result = await api_interface.timeframe_item_manager.aget_data_from_map(name=name,
+        original_name = UniqueNameGenerator.get_original_name(item_data=item_data, is_eth=is_eth)
+        TimeframeItemManager.add_item(item_data=item_data, original_name=original_name, is_eth=is_eth)
+        result = await TimeframeItemManager.aget_data_from_map(name=original_name,
                                                                                empty_data_result="Since no data was pulled, please stop the analysis and tell them to skip this analysis.")
         result = self.streaming_ohlc_to_llm_data(result, limit=limit,format_=format)
 
@@ -98,7 +100,7 @@ def ohlc_list_tool(mcp:FastMCP):
                 "is_eth": is_eth
             }
             params = mcp_get_api_params(context, params)
-            ohlc_latest = await api_interface.api_client.ohlc.a_ohlcs_latest(**params)
+            ohlc_latest = await AitradosApiServiceInstance.api_client.ohlc.a_ohlcs_latest(**params)
 
             cc=CommonControl(ohlc_latest).result()
             result= cc.to_list_data(  rename_column_name_mapping=rename_column_name_mapping,  filter_column_names=filter_column_names,limit=limit,format=format)

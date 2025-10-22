@@ -1,6 +1,19 @@
-"""
-######env file:
+---
+weight: 1100
+date: "2025-09-03T22:37:22+01:00"
+draft: false
+author: "VON"
+title: "Environment Configuration"
+icon: "settings"
+toc: true
+description: "Complete guide for configuring environment variables and settings for the MCP trading system"
+publishdate: "2025-09-12T22:37:22+01:00"
+tags: ["Environment Setup", "Configuration", "API Keys", "MCP Server", "Trading System", "Environment Variables", "Setup Guide"]
+categories: ["Configuration", "Setup"]
+keywords: ["environment variables", "configuration", "setup", "API keys", "trading system"]
+---
 
+```dotenv
 ##debug
 DEBUG=true
 
@@ -25,7 +38,9 @@ RENAME_COLUMN_NAME_MAPPING_FOR_LLM=interval:timeframe,
 ##OHLC_COLUMN_NAMES_FOR_LLM:Filter out redundant column names for LLM input. The column names should be separated by commas.
 OHLC_COLUMN_NAMES_FOR_LLM=timeframe,close_datetime,open,high,low,close,volume
 
-"""
+```
+
+```python
 import os
 
 
@@ -38,3 +53,4 @@ def get_example_env():
         os.environ['OHLC_LIMIT_FOR_LLM'] = '20'
         os.environ['RENAME_COLUMN_NAME_MAPPING_FOR_LLM'] = 'interval:timeframe,'
         os.environ['OHLC_COLUMN_NAMES_FOR_LLM'] = 'timeframe,close_datetime,open,high,low,close,volume'
+```

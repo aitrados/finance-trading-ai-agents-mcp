@@ -1,7 +1,15 @@
+import traceback
 
 import uvicorn
 import asyncio
 from typing import Optional
+
+from aitrados_api.common_lib.common import get_env_bool_value
+
+if get_env_bool_value("ENABLE_RPC_PUBSUB_SERVICE"):
+    from aitrados_api.universal_interface.trade_middleware_instance import AitradosTradeMiddlewareInstance
+    AitradosTradeMiddlewareInstance.run_all()
+
 
 
 from finance_trading_ai_agents_mcp.mcp_services.addition_custom_mcp_tool import add_addition_custom_mcp
@@ -17,6 +25,7 @@ def mcp_run(port: int = 11999, host: str = "127.0.0.1", addition_custom_mcp_py_f
     # Load custom MCP
     add_addition_custom_mcp(addition_custom_mcp_py_file)
 
+
     config = uvicorn.Config(
         app="finance_trading_ai_agents_mcp.mcp_services.mcp_instance:app",
         host=host,
@@ -27,9 +36,15 @@ def mcp_run(port: int = 11999, host: str = "127.0.0.1", addition_custom_mcp_py_f
     try:
         asyncio.run(server.serve())
     except KeyboardInterrupt:
-        from finance_trading_ai_agents_mcp.api.apiinterface import api_interface
-        api_interface.api_client.close()
-        api_interface.ws_client.close()
+        try:
+            from aitrados_api.trade_middleware_service.trade_middleware_service_instance import AitradosApiServiceInstance
+
+            AitradosApiServiceInstance.ws_client.close()
+            AitradosApiServiceInstance.api_client.close()
+        except:
+            pass
+
         print("Server stopped by user")
     except Exception as e:
+        traceback.print_exc()
         print(f"Server error: {e}")

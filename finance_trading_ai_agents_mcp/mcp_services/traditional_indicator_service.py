@@ -1,5 +1,4 @@
-import time
-import traceback
+
 
 from typing import List
 
@@ -7,7 +6,6 @@ from aitrados_api.common_lib.contant import ApiDataFormat
 from fastmcp import FastMCP, Context
 from pydantic import Field
 
-from finance_trading_ai_agents_mcp.api.apiinterface import api_interface
 from finance_trading_ai_agents_mcp.live_streaming_ohlc_operations.live_streaming_ohlc_operation import \
     LiveStreamingOriginalOhlcOperation
 
@@ -28,9 +26,9 @@ async def get_traditional_indicators(context: Context,
                                          description="Full symbol like STOCK:US:AAPL, CRYPTO:GLOBAL:BTCUSD"),
                                      interval: str = Field("DAY",
                                                            description="Time interval: DAY, HOUR, M30, M15, M5, M1"),
-                                     indicators: List[str] = Field(["MA", "RSI", "MACD", "BOLL"],
-                                                                   description="List of technical indicators",
-                                                                   min_length=1, max_length=4),
+                                     indicators: List[str] = Field(["MA", "RSI", "MACD", "BOLL","EMA"],
+                                                                   description="List of technical indicators,Use at least one",
+                                                                   min_length=1, max_length=5),
                                      ma_periods: List[int] = Field([5, 10, 20, 60],
                                                                    description="Moving average periods", min_length=1,
                                                                    max_length=10),
@@ -46,7 +44,7 @@ async def get_traditional_indicators(context: Context,
     Args:
         full_symbol: Complete symbol format: asset_type:country:symbol
         interval: Candlestick time period
-        indicators: Technical indicators to calculate
+        indicators: Technical indicators to calculate,now support ["MA", "RSI", "MACD", "BOLL","EMA"]
         ma_periods: Period parameters for moving averages
         limit: Number of data points to return
         format: Data output format

@@ -11,10 +11,24 @@ class TraditionalIndicatorOps:
         self.added_columns = []  # Record added column names
         self.__init()
     def __init(self):
-        valid_indicators = {"MA", "RSI", "MACD", "BOLL"}
+        valid_indicators = {"MA", "MACD", "BOLL","RSI","EMA"}
         invalid_indicators = set(self.indicators) - valid_indicators
         if invalid_indicators:
             raise ValueError(f"Unsupported indicators: {invalid_indicators}")
+
+    def _calculate_ema(self, df: pl.DataFrame, periods: List[int] = None) -> pl.DataFrame:
+        """Calculate Exponential Moving Average"""
+        if periods is None:
+            periods = self.ma_periods or [12, 26]  # use macd args
+
+        for period in periods:
+            col_name = f"ema_{period}"
+            df = df.with_columns(
+                pl.col("close").ewm_mean(span=period).alias(col_name)
+            )
+            self.added_columns.append(col_name)
+        return df
+
 
     def _calculate_ma(self, df: pl.DataFrame) -> pl.DataFrame:
         """Calculate Moving Average"""
@@ -99,6 +113,8 @@ class TraditionalIndicatorOps:
         self.added_columns.extend(["boll_upper", "boll_mid", "boll_lower"])
         return df
 
+
+
     def _calculate_df(self, df: pl.DataFrame):
 
         if "MA" in self.indicators:
@@ -112,7 +128,8 @@ class TraditionalIndicatorOps:
 
         if "BOLL" in self.indicators:
             df = self._calculate_boll(df)
-
+        if "EMA" in self.indicators:
+            df = self._calculate_ema(df)
         return df
 
     def get_result(self):

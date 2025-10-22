@@ -1,9 +1,5 @@
 from contextlib import asynccontextmanager, AsyncExitStack
-from typing import Annotated
-
-from fastapi import FastAPI, Depends
-
-from finance_trading_ai_agents_mcp.api.apiinterface import api_interface
+from fastapi import FastAPI
 from finance_trading_ai_agents_mcp.mcp_services.economic_calendar_service import mcp_app as economic_calendar_mcp_app
 from finance_trading_ai_agents_mcp.mcp_services.global_instance import custom_mcp_server
 from finance_trading_ai_agents_mcp.mcp_services.http_service import set_mcp_config
@@ -16,9 +12,10 @@ from finance_trading_ai_agents_mcp.parameter_validator.analysis_departments impo
 @asynccontextmanager
 async def app_lifespan(app: FastAPI):
 
-
-    api_interface.ws_client.run(is_thread=True)
     print("Starting up the mcp app...")
+    from aitrados_api.trade_middleware_service.trade_middleware_service_instance import AitradosApiServiceInstance
+    if not AitradosApiServiceInstance.latest_ohlc_multi_timeframe_manager:
+        from aitrados_api.universal_interface.aitrados_instance import ws_client_instance
     yield
 
 
@@ -49,7 +46,7 @@ set_mcp_config(app)
 
 
 app.mount("/traditional_indicator", traditional_indicator_mcp_app)
-app.mount("/price_action", traditional_indicator_mcp_app)
+app.mount("/price_action", price_action_mcp_app)
 app.mount("/economic_calendar", economic_calendar_mcp_app)
 app.mount("/news", news_mcp_app)
 
