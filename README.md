@@ -15,6 +15,7 @@ A free, professional, open-source financial analysis and quantitative trading MC
 - 🤖 AI integration: Interfaces optimized for LLMs
 - ⚡ High performance: Real-time streaming OHLC data processing
 - 🔧 Extensible: Support for custom MCP services
+- 🪩 Support local RPC/PubSub service.you can cross process/software/code languages communication
 
 ![homepage](https://raw.githubusercontent.com/aitrados/finance-trading-ai-agents-mcp/refs/heads/main/assets/mcp-homepage.png)
 
@@ -285,9 +286,13 @@ Create a `.env` file:
 ##debug
 DEBUG=true
 
+
 ##Free Register at AiTrados website https://www.aitrados.com/ to get your API secret key (Free).
 AITRADOS_SECRET_KEY=YOUR_SECRET_KEY
 
+##Enable RPC/PubSub Service.you can cross process/software/code language communication.easily call api /websocks/other service
+## see https://docs.aitrados.com/en/docs/api/trade_middleware/overview/
+ENABLE_RPC_PUBSUB_SERVICE=0
 
 ##LIVE_STREAMING_OHLC_LIMIT:Real-time OHLC data stream length,default 150
 ##Prevent the strategy result from not being obtained due to insufficient ohlc length. For example, the value of MA200 can only be calculated when the length of ohlc is greater than 200.
@@ -302,6 +307,7 @@ OHLC_LIMIT_FOR_LLM=30
 RENAME_COLUMN_NAME_MAPPING_FOR_LLM=interval:timeframe,
 ##OHLC_COLUMN_NAMES_FOR_LLM:Filter out redundant column names for LLM input. The column names should be separated by commas.
 OHLC_COLUMN_NAMES_FOR_LLM=timeframe,close_datetime,open,high,low,close,volume
+
 ```
 
 ## 📚 Documentation & Examples

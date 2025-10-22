@@ -6,6 +6,7 @@ DEBUG=true
 AITRADOS_SECRET_KEY=YOUR_SECRET_KEY
 
 ##Enable RPC/PubSub Service.you can cross process/software/code language communication.easily call api /websocks/other service
+## see https://docs.aitrados.com/en/docs/api/trade_middleware/overview/
 ENABLE_RPC_PUBSUB_SERVICE=0
 
 ##LIVE_STREAMING_OHLC_LIMIT:Real-time OHLC data stream length,default 150
