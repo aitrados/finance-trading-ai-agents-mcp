@@ -15,7 +15,7 @@ A free, professional, open-source financial analysis and quantitative trading MC
 - 🤖 AI integration: Interfaces optimized for LLMs
 - ⚡ High performance: Real-time streaming OHLC data processing
 - 🔧 Extensible: Support for custom MCP services
-- 🪩 Support local RPC/PubSub service.you can cross process/software/code languages communication
+- 🪩 Support local RPC/PubSub service.you can cross process/software/code languages communication.
 
 ![homepage](https://raw.githubusercontent.com/aitrados/finance-trading-ai-agents-mcp/refs/heads/main/assets/mcp-homepage.png)
 
@@ -207,19 +207,20 @@ if __name__ == "__main__":
 
 ```bash
 # --env-config
---env-config '{"DEBUG":"1","AITRADOS_SECRET_KEY":"YOUR_SECRET_KEY","OHLC_LIMIT_FOR_LLM":"20","RENAME_COLUMN_NAME_MAPPING_FOR_LLM":"interval:timeframe,","OHLC_COLUMN_NAMES_FOR_LLM":"timeframe,close_datetime,open,high,low,close,volume","LIVE_STREAMING_OHLC_LIMIT":"150"}'
+--env-config '{"DEBUG":"1","AITRADOS_SECRET_KEY":"YOUR_SECRET_KEY","OHLC_LIMIT_FOR_LLM":"20","RENAME_COLUMN_NAME_MAPPING_FOR_LLM":"interval:timeframe,","OHLC_COLUMN_NAMES_FOR_LLM":"timeframe,close_datetime,open,high,low,close,volume","LIVE_STREAMING_OHLC_LIMIT":"150","ENABLE_RPC_PUBSUB_SERVICE":"1"}'
 
 # Show help
 finance-trading-ai-agents-mcp --help
 
 # Start the service
-finance-trading-ai-agents-mcp --env-config {"DEBUG":"1","AITRADOS_SECRET_KEY":"YOUR_SECRET_KEY"}
+finance-trading-ai-agents-mcp --env-config '{"DEBUG":"1","AITRADOS_SECRET_KEY":"YOUR_SECRET_KEY"}'
 
+finance-trading-ai-agents-mcp --env-file .env
 # Run with custom MCP server and custom MCP functions from Python file
-python -m finance_trading_ai_agents_mcp -c finance_trading_ai_agents_mcp/examples/addition_custom_mcp_examples/addition_custom_mcp_example.py --env-config {"DEBUG":"1","AITRADOS_SECRET_KEY":"YOUR_SECRET_KEY"}
+python -m finance_trading_ai_agents_mcp -c finance_trading_ai_agents_mcp/examples/addition_custom_mcp_examples/addition_custom_mcp_example.py --env-config '{"DEBUG":"1","AITRADOS_SECRET_KEY":"YOUR_SECRET_KEY"}'
 
 # Specify port
-python -m finance_trading_ai_agents_mcp -p 9000 --env-config {"DEBUG":"1","AITRADOS_SECRET_KEY":"YOUR_SECRET_KEY"}
+python -m finance_trading_ai_agents_mcp -p 9000 --env-config '{"DEBUG":"1","AITRADOS_SECRET_KEY":"YOUR_SECRET_KEY"}'
 ```
 
 ### API usage examples

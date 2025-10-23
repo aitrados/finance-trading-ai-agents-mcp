@@ -6,6 +6,7 @@ from pathlib import Path
 from typing import List
 
 from aitrados_api.common_lib.common import is_debug
+
 from fastmcp import Context
 
 from aitrados_api.common_lib.contant import SchemaAsset, IntervalName

@@ -4,8 +4,12 @@ import argparse
 import sys
 import json
 import os
+
+from aitrados_api.common_lib.common import load_env_file
+
 from .mcp_manage import mcp_run
 from .utils.common_utils import generate_custom_mcp_template
+
 
 
 def set_env_from_json(json_config):
@@ -83,6 +87,7 @@ Examples:
 
   # With environment variables from JSON file
   python -m finance_trading_ai_agents_mcp --env-config-file config.json
+  python -m finance_trading_ai_agents_mcp --env-file .env
 
   # Complete example with all options
   python -m finance_trading_ai_agents_mcp -p 8000 --host 0.0.0.0 -c custom.py --env-config '{"DEBUG":"1"}'
@@ -91,6 +96,7 @@ JSON Config Example:
   {
     "DEBUG": "1",
     "AITRADOS_SECRET_KEY": "YOUR_SECRET_KEY",
+    "ENABLE_RPC_PUBSUB_SERVICE": "1",
     "OHLC_LIMIT_FOR_LLM": "20",
     "RENAME_COLUMN_NAME_MAPPING_FOR_LLM": "interval:timeframe,",
     "OHLC_COLUMN_NAMES_FOR_LLM": "timeframe,close_datetime,open,high,low,close,volume",
@@ -114,6 +120,8 @@ JSON Config Example:
                                help='JSON string containing environment variables')
     server_parser.add_argument('--env-config-file', type=str,
                                help='Path to JSON file containing environment variables')
+    server_parser.add_argument('--env-file', type=str,
+                               help='Path to env file containing environment variables')
 
     # Generate template command
     template_parser = subparsers.add_parser('generate', help='Generate custom MCP template')
@@ -121,7 +129,7 @@ JSON Config Example:
                                  help='Output file path (default: my_custom_mcp.py)')
 
     # Version information
-    parser.add_argument('--version', action='version', version='%(prog)s 0.0.1')
+    parser.add_argument('--version', action='version', version='%(prog)s 0.0.3')
 
     # Compatibility with old parameter format (default to serve when no subcommand)
     parser.add_argument('-p', '--port', type=int, default=11999, help='Port to run the server on (default: 11999)')
@@ -131,6 +139,8 @@ JSON Config Example:
                         help='JSON string containing environment variables')
     parser.add_argument('--env-config-file', type=str,
                         help='Path to JSON file containing environment variables')
+    parser.add_argument('--env-file', type=str,
+                        help='Path to env file containing environment variables')
 
     args = parser.parse_args()
 
@@ -144,6 +154,10 @@ JSON Config Example:
         elif args.env_config_file:
             config = load_env_from_file(args.env_config_file)
             set_env_from_json(config)
+        elif args.env_file:
+            load_env_file(args.env_file,override=True)
+
+
 
         # Handle subcommands
         if args.command == 'generate':
@@ -155,14 +169,14 @@ JSON Config Example:
             print("🚀 Finance Trading AI Agents MCP Server")
             print("=" * 60)
             print(f"🌐 Server Address: http://{args.host}:{args.port}")
-            print(f"📡 WebSocket: ws://{args.host}:{args.port}")
+            #print(f"📡 WebSocket: ws://{args.host}:{args.port}")
             if args.custom_mcp_file:
                 print(f"📂 Custom MCP: {args.custom_mcp_file}")
             print("=" * 60)
             print("📋 Environment Variables:")
 
             # Show current environment variables (mask sensitive ones)
-            env_vars = ['DEBUG', 'AITRADOS_SECRET_KEY', 'OHLC_LIMIT_FOR_LLM',
+            env_vars = ['DEBUG', 'AITRADOS_SECRET_KEY','ENABLE_RPC_PUBSUB_SERVICE', 'OHLC_LIMIT_FOR_LLM',
                        'RENAME_COLUMN_NAME_MAPPING_FOR_LLM', 'OHLC_COLUMN_NAMES_FOR_LLM',
                        'LIVE_STREAMING_OHLC_LIMIT']
 

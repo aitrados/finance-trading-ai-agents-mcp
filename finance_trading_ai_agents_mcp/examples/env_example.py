@@ -33,6 +33,7 @@ def get_example_env():
     if not os.getenv('AITRADOS_SECRET_KEY'):
         os.environ['AITRADOS_SECRET_KEY'] = 'YOUR_SECRET_KEY' #Register at  https://www.aitrados.com/ to get your API secret key (Free).
         os.environ['DEBUG'] = 'true'
+        # see https://docs.aitrados.com/en/docs/api/trade_middleware/overview/
         os.environ['ENABLE_RPC_PUBSUB_SERVICE'] = 'true'
 
         os.environ['OHLC_LIMIT_FOR_LLM'] = '20'

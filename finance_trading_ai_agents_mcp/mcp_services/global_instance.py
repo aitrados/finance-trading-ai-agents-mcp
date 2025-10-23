@@ -28,7 +28,7 @@ def get_rename_column_name_mapping():
 
 
 def get_filter_column_names():
-    column_name_str = os.getenv("OHLC_COLUMN_NAMES_FOR_LLM", "datetime,close_datetime,open,high,low,close,volume")
+    column_name_str = os.getenv("OHLC_COLUMN_NAMES_FOR_LLM", "datetime,close_datetime,interval,open,high,low,close,volume")
     column_name_str = column_name_str.strip(",")
     keys_array = str.split(column_name_str, ",")
     return keys_array
