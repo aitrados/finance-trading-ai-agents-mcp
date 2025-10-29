@@ -70,52 +70,6 @@ class StreamingOhlcOperation:
 
 
 def ohlc_list_tool(mcp:FastMCP):
-    @mcp.tool
-    async def get_latest_ohlc(context: Context, full_symbol: str,
-                                   interval: str = "DAY",
-                                   format: str = ApiDataFormat.CSV,
-                                   limit: int = Field(150, description="row number of results", ge=1, le=1000),
-                                   is_eth: bool = Field(False, description="Whether to include US stock extended hours data"),
-                                   ):
-        """
-        Get the latest OHLC data for a given financial instrument.
-
-        :param full_symbol: Reference system prompt words
-        :param interval: Reference system prompt words
-        :param format: The desired output format (`csv` or `json`).
-        :param limit: The number of data points to retrieve (1-1000).
-        :param is_eth: Whether to include US stock extended hours data.
-        :return: OHLC data in the specified format or other notice text.
-        """
-
-        try:
-            schema_asset, country_symbol = split_full_symbol(full_symbol)
-
-            params = {
-                "schema_asset": schema_asset,
-                "country_symbol": country_symbol,
-                "interval": interval,
-                "format": ApiDataFormat.CSV,
-                "limit": limit,
-                "is_eth": is_eth
-            }
-            params = mcp_get_api_params(context, params)
-            ohlc_latest = await AitradosApiServiceInstance.api_client.ohlc.a_ohlcs_latest(**params)
-
-            cc=CommonControl(ohlc_latest).result()
-            result= cc.to_list_data(  rename_column_name_mapping=rename_column_name_mapping,  filter_column_names=filter_column_names,limit=limit,format=format)
-            show_mcp_result(mcp, result)
-            return result
-        except Exception as e:
-            result = f"{e}"
-            show_mcp_result(mcp, result, True)
-            return result
-
-
-
-
-
-
 
     @mcp.tool
     async def get_live_streaming_ohlc(context: Context,
@@ -137,6 +91,7 @@ def ohlc_list_tool(mcp:FastMCP):
 
 
         except Exception as e:
+            traceback.print_exc()
             result = f"{e}"
             show_mcp_result(mcp, result, True)
             return result
@@ -188,6 +143,45 @@ def ohlc_list_tool(mcp:FastMCP):
             show_mcp_result(mcp, result, True)
             return result
 
+    @mcp.tool
+    async def get_latest_ohlc(context: Context, full_symbol: str,
+                                   interval: str = "DAY",
+                                   format: str = ApiDataFormat.CSV,
+                                   limit: int = Field(150, description="row number of results", ge=1, le=1000),
+                                   is_eth: bool = Field(False, description="Whether to include US stock extended hours data"),
+                                   ):
+        """
+        Get the latest OHLC data for a given financial instrument.
 
+        :param full_symbol: Reference system prompt words
+        :param interval: Reference system prompt words
+        :param format: The desired output format (`csv` or `json`).
+        :param limit: The number of data points to retrieve (1-1000).
+        :param is_eth: Whether to include US stock extended hours data.
+        :return: OHLC data in the specified format or other notice text.
+        """
+
+        try:
+            schema_asset, country_symbol = split_full_symbol(full_symbol)
+
+            params = {
+                "schema_asset": schema_asset,
+                "country_symbol": country_symbol,
+                "interval": interval,
+                "format": ApiDataFormat.CSV,
+                "limit": limit,
+                "is_eth": is_eth
+            }
+            params = mcp_get_api_params(context, params)
+            ohlc_latest = await AitradosApiServiceInstance.api_client.ohlc.a_ohlcs_latest(**params)
+
+            cc=CommonControl(ohlc_latest).result()
+            result= cc.to_list_data(  rename_column_name_mapping=rename_column_name_mapping,  filter_column_names=filter_column_names,limit=limit,format=format)
+            show_mcp_result(mcp, result)
+            return result
+        except Exception as e:
+            result = f"{e}"
+            show_mcp_result(mcp, result, True)
+            return result
 
 

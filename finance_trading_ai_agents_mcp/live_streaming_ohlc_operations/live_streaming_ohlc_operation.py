@@ -68,7 +68,7 @@ class LiveStreamingOriginalOhlcOperation:
 
                 interval = df[interval_key][0]
 
-
+                df=AnyListDataToFormatData._get_formatted_float_column_df(df)
 
                 content=to_format_data(df,format,is_copy=False)
                 if format=="dict":

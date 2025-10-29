@@ -1,6 +1,9 @@
 from typing import Set, List, Dict, Any, Optional
 import inspect
 
+from finance_trading_ai_agents_mcp.mcp_services.traditional_indicator_operations.traditional_indicator_ops import \
+    TraditionalIndicatorOps
+
 
 class AnalysisDepartment:
     """
@@ -15,7 +18,9 @@ class AnalysisDepartment:
     #COMMODITY_FUNDAMENTAL = "commodity_fundamental"
     #STOCK_FUNDAMENTAL = "stock_fundamental"
     NEWS = "news"
-    #MANAGER = "manager"
+    MANAGER = "manager"
+    DECISION_MAKER="decision_maker"
+
 
     def __init__(self):
         # Initialize core department set
@@ -26,19 +31,20 @@ class AnalysisDepartment:
             #self.COMMODITY_FUNDAMENTAL,
             #self.STOCK_FUNDAMENTAL,
             self.NEWS,
-            #self.MANAGER
+            self.MANAGER,
+            self.DECISION_MAKER
         }
 
         # Store metadata information for departments
         self._department_metadata: Dict[str, Dict[str, Any]] = {
             self.TRADITIONAL_INDICATOR: {
                 "display_name": "Traditional Indicator",
-                "description": "Traditional technical analysis indicators",
+                "description": f"I am an expert in financial indicator analysis, specializing in {TraditionalIndicatorOps.valid_indicators}, and other indicators. I can only use the technical indicators the user for price analysis. I can select one or more indicators for analysis.It is best to include the chart period in your question. If it is MA or EMA, you need to tell me their period(s).",
                 "category": "technical"
             },
             self.PRICE_ACTION: {
                 "display_name": "Price Action",
-                "description": "Price action analysis and pattern recognition",
+                "description": f"I am a naked chart trading expert, specializing in recent pure price action analysis, candlestick patterns, support/resistance levels, and market sentiment. I analyze pure price movements without relying on traditional indicators. Focus on price structure, volume patterns, and market psychology",
                 "category": "technical"
             },
             self.ECONOMIC_CALENDAR: {
@@ -52,15 +58,23 @@ class AnalysisDepartment:
                 "description": "Financial news and sentiment analysis",
                 "category": "information"
             },
+            self.MANAGER: {
+                "display_name": "Manager",
+                "description": "Department management and coordination",
+                "category": "management"
+            },
+            self.DECISION_MAKER: {
+                "display_name": "Decision_Maker",
+                "description": "the command decision maker",
+                "category": "executor"
+            }
 
         }
 
+
+
     """
-    self.MANAGER: {
-        "display_name": "Manager",
-        "description": "Department management and coordination",
-        "category": "management"
-    }
+
     self.COMMODITY_FUNDAMENTAL: {
         "display_name": "Commodity Fundamental",
         "description": "Commodity fundamental analysis",

@@ -6,7 +6,8 @@ from fastmcp import Client
 
 from finance_trading_ai_agents_mcp import analysis_department
 
-from finance_trading_ai_agents_mcp.examples.mcp_clients.mcp_client_lib import get_client_mcp_config
+from finance_trading_ai_agents_mcp.assistive_tools.assistive_tools_utils import get_client_mcp_config
+from finance_trading_ai_agents_mcp.assistive_tools.mcp_tools_converter import LlmCallToolConverter
 
 departments=[
  analysis_department.TRADITIONAL_INDICATOR
@@ -24,16 +25,28 @@ async def main():
         print(json.dumps(tool_data))
 
         # Execute operations
+
         result = await client.call_tool("get_traditional_indicators",
-                                        {"full_symbol": "STOCK:US:AAPL",
-                                         "interval": "DAY",
+                                        {"full_symbol": "CRYPTO:GLOBAL:BTCUSD",
+                                         "interval": "60",
                                          "format": "CSV",
-                                         "limit": 20,
+                                         "limit": 30,
                                          "is_eth": False,
                                          "indicators":["MA", "RSI", "MACD", "BOLL","ema"],
                                          "ma_periods":[5, 10, 20, 60]
-                                         }
+                                         },
+
                                         )
+
+        result = await LlmCallToolConverter(client).call_tool("get_traditional_indicators",
+                                        {"full_symbol": "CRYPTO:GLOBAL:BTCUSD",
+                                         "interval": "60",
+                                         "format": "CSV",
+                                         "limit": 30,
+                                         "is_eth": False,
+                                         "indicators":["MA", "RSI", "MACD", "BOLL","ema"],
+                                         "ma_periods":[5, 10, 20, 60]
+                                         },)
         print(result)
 
 asyncio.run(main())

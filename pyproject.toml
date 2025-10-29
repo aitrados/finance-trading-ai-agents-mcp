@@ -8,7 +8,7 @@ build-backend = "hatchling.build"
 # The name users will use to install your package via pip.
 name = "finance-trading-ai-agents-mcp"
 # The initial version of your package. You must increment this for every new release.
-version = "0.0.3"
+version = "0.0.4"
 
 # --- Recommended Fields ---
 authors = [

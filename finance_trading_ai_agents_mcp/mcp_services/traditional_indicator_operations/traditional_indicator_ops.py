@@ -4,6 +4,7 @@ import polars as pl
 
 
 class TraditionalIndicatorOps:
+    valid_indicators = {"MA", "MACD", "BOLL", "RSI", "EMA"}
     def __init__(self, ohlc_data: dict, indicators: List[str], ma_periods: List[int] = None):
         self.ohlc_data = ohlc_data
         self.indicators = [ind.upper() for ind in indicators]  # Convert to uppercase
@@ -11,10 +12,10 @@ class TraditionalIndicatorOps:
         self.added_columns = []  # Record added column names
         self.__init()
     def __init(self):
-        valid_indicators = {"MA", "MACD", "BOLL","RSI","EMA"}
-        invalid_indicators = set(self.indicators) - valid_indicators
+
+        invalid_indicators = set(self.indicators) - self.valid_indicators
         if invalid_indicators:
-            raise ValueError(f"Unsupported indicators: {invalid_indicators}")
+            raise ValueError(f"Unsupported indicators: {invalid_indicators}.Only support {self.valid_indicators}")
 
     def _calculate_ema(self, df: pl.DataFrame, periods: List[int] = None) -> pl.DataFrame:
         """Calculate Exponential Moving Average"""

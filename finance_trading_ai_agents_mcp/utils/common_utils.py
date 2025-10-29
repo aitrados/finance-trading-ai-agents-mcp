@@ -1,16 +1,37 @@
 import datetime
 import inspect
 import os
+import sys
 import time
 from pathlib import Path
 from typing import List
 
 from aitrados_api.common_lib.common import is_debug
+from aitrados_api.common_lib.common_remote_curl import RemoteCurl
 
 from fastmcp import Context
 
 from aitrados_api.common_lib.contant import SchemaAsset, IntervalName
 
+def get_content_from_file_or_url(file_or_url,headers=None):
+    if isinstance(file_or_url,str) and (file_or_url.startswith("http://") or file_or_url.startswith("https://")):
+        if  headers is None:
+            headers = {"accept": "text/html"}
+        res_data = RemoteCurl.get(file_or_url,headers,timeout=10)
+        if "data" not in res_data:
+            raise ValueError(f"Error remote url:{str(res_data)} ")
+        return res_data["data"]
+
+    if not isinstance(file_or_url,Path):
+        file_or_url=Path(file_or_url)
+
+    if not file_or_url.exists():
+        raise  ValueError(f"File not found: {file_or_url}")
+    try:
+            content = file_or_url.read_text(encoding='utf-8')
+            return content
+    except Exception as e:
+        raise ValueError(f"Error reading file: {str(e)}")
 
 def get_real_interval(interval:str):
     array=IntervalName.get_array()

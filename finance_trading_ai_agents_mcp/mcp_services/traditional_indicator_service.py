@@ -4,6 +4,7 @@ from typing import List
 
 from aitrados_api.common_lib.contant import ApiDataFormat
 from fastmcp import FastMCP, Context
+from loguru import logger
 from pydantic import Field
 
 from finance_trading_ai_agents_mcp.live_streaming_ohlc_operations.live_streaming_ohlc_operation import \
@@ -65,6 +66,7 @@ async def get_traditional_indicators(context: Context,
 
         result=LiveStreamingOriginalOhlcOperation.get_llm_data(ohlc_data,format)
         show_mcp_result(mcp, result)
+        #logger.info(f"Get traditional indicators result: {result}")
         return result
 
 

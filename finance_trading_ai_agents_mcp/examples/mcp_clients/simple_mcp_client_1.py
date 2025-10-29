@@ -4,9 +4,8 @@ import json
 from fastmcp import Client
 
 from finance_trading_ai_agents_mcp import analysis_department
-
-from finance_trading_ai_agents_mcp.examples.mcp_clients.mcp_client_lib import get_client_mcp_config
-
+from finance_trading_ai_agents_mcp.assistive_tools.assistive_tools_utils import get_client_mcp_config,get_basic_system_function_call_prompt
+function_call_prompt=get_basic_system_function_call_prompt("en")
 departments=[
  analysis_department.ECONOMIC_CALENDAR
 ]
