@@ -1,13 +1,12 @@
-import os
-from pathlib import Path
 
+from pathlib import Path
+from aitrados_api.common_lib.common import get_env_value
 from fastapi import FastAPI
 from starlette.requests import Request
 from starlette.responses import PlainTextResponse, HTMLResponse
 
 from finance_trading_ai_agents_mcp.parameter_validator.analysis_department_params import CompanyDepartmentParams
 from finance_trading_ai_agents_mcp.parameter_validator.analysis_departments import analysis_department
-from finance_trading_ai_agents_mcp.utils.common_utils import get_env_value
 
 
 def set_mcp_config(app: FastAPI):
@@ -42,6 +41,9 @@ def set_mcp_config(app: FastAPI):
 
         mcp_list = {}
         for mcp_type in selected_departments:
+            if mcp_type in ["manager","decision_maker"]:
+                """manager and decision_maker do not need mcp """
+                continue
             mcp_config = {
                 "url": f"{base_url}/{mcp_type}/",
                 "transport": "streamable-http",

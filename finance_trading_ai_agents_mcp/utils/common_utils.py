@@ -94,16 +94,6 @@ def mcp_get_api_params(context: Context,params:dict)->dict:
 
     return params
 
-def get_env_value(env_key,default_value=None):
-    value=os.getenv(env_key, default_value)
-    try:
-        value=int(value)
-    except:
-        try:
-            value = float(value)
-        except:
-            pass
-    return value
 
 
 def generate_custom_mcp_template(output_path: str = "my_custom_mcp.py"):

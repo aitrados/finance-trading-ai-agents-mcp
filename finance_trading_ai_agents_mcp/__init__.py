@@ -4,7 +4,7 @@ Aitrados Finance Multiple AI Agents MCP
 A specialized MCP server for financial analysis and quantitative trading.
 """
 
-__version__ = "0.0.1"
+__version__ = "0.0.5"
 __author__ = "Alexander"
 __email__ = "support@aitrados.com"
 

@@ -1,12 +1,9 @@
 import datetime
 from typing import List, Any
-
 from fastmcp import Client
 from fastmcp.client.progress import ProgressHandler
-from lazy_object_proxy.utils import await_
 from mcp import Tool
 from mcp.types import CallToolResult
-
 from finance_trading_ai_agents_mcp.assistive_tools.aitrados_mcp_client import AitradosMcpClient
 import asyncio
 

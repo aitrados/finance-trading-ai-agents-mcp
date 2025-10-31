@@ -1,7 +1,7 @@
+
 from aitrados_api.universal_interface.callback_manage import CallbackManage
 from finance_trading_ai_agents_mcp import mcp_run
-from finance_trading_ai_agents_mcp.examples.env_example import get_example_env
-from aitrados_api.common_lib.common import load_env_file
+
 
 """
 Real-time WebSocket Data Integration with MCP Server
@@ -90,8 +90,10 @@ def error_handle_callback(client, *args,**kwargs):
 
 
 if __name__ == "__main__":
-    get_example_env()
-    #load_env_file(".env", override=True)
+    #from examples.env_example import get_example_env
+    #get_example_env()
+    #from aitrados_api.common_lib.common import load_env_file
+    #load_env_file(file=None, override=True)
     # Register all custom callbacks
     CallbackManage.add_custom_multi_timeframe_callback(multi_timeframe_callback)
     CallbackManage.add_custom_event_handle_msg(event_handle_callback)

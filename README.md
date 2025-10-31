@@ -17,6 +17,11 @@ A free, professional, open-source financial analysis and quantitative trading MC
 - 🔧 Extensible: Support for custom MCP services
 - 🪩 Support local RPC/PubSub service.you can cross process/software/code languages communication.
 
+## Fastest experience
+- [MCP FOR AI (langchain-trading-agents)](https://github.com/aitrados/langchain-trading-agents) for starters
+
+
+
 ![homepage](https://raw.githubusercontent.com/aitrados/finance-trading-ai-agents-mcp/refs/heads/main/assets/mcp-homepage.png)
 
 
@@ -28,16 +33,17 @@ A free, professional, open-source financial analysis and quantitative trading MC
 Get it here: https://www.aitrados.com/
 
 
-## Basic system prompt_words embedded in your agent system
+## Basic call tools prompt words embedded in your agent system prompt
 
-##### [basic_system_prompt_words/de.md](https://github.com/aitrados/finance-trading-ai-agents-mcp/blob/main/basic_system_prompt_words/de.md) Deutsch
-##### [basic_system_prompt_words/en.md](https://github.com/aitrados/finance-trading-ai-agents-mcp/blob/main/basic_system_prompt_words/en.md) English
-##### [basic_system_prompt_words/fr.md](https://github.com/aitrados/finance-trading-ai-agents-mcp/blob/main/basic_system_prompt_words/fr.md) Français
-##### [basic_system_prompt_words/ja.md](https://github.com/aitrados/finance-trading-ai-agents-mcp/blob/main/basic_system_prompt_words/ja.md) 日本語
-##### [basic_system_prompt_words/ko.md](https://github.com/aitrados/finance-trading-ai-agents-mcp/blob/main/basic_system_prompt_words/ko.md) 한국어
-##### [basic_system_prompt_words/ru.md](https://github.com/aitrados/finance-trading-ai-agents-mcp/blob/main/basic_system_prompt_words/ru.md) Русский
-##### [basic_system_prompt_words/zh_cn.md](https://github.com/aitrados/finance-trading-ai-agents-mcp/blob/main/basic_system_prompt_words/zh_cn.md) 简体中文
-##### [basic_system_prompt_words/zh_tw.md](https://github.com/aitrados/finance-trading-ai-agents-mcp/blob/main/basic_system_prompt_words/zh_tw.md) 繁体中文
+##### [de.md](https://github.com/aitrados/finance-trading-ai-agents-mcp/blob/main/finance_trading_ai_agents_mcp/assistive_tools/basic_system_function_call_prompt_words/de.md) Deutsch
+##### [en.md](https://github.com/aitrados/finance-trading-ai-agents-mcp/blob/main/finance_trading_ai_agents_mcp/assistive_tools/basic_system_function_call_prompt_words/en.md) English
+##### [fr.md](https://github.com/aitrados/finance-trading-ai-agents-mcp/blob/main/finance_trading_ai_agents_mcp/assistive_tools/basic_system_function_call_prompt_words/fr.md) Français
+##### [ja.md](https://github.com/aitrados/finance-trading-ai-agents-mcp/blob/main/finance_trading_ai_agents_mcp/assistive_tools/basic_system_function_call_prompt_words/ja.md) 日本語
+##### [kr.md](https://github.com/aitrados/finance-trading-ai-agents-mcp/blob/main/finance_trading_ai_agents_mcp/assistive_tools/basic_system_function_call_prompt_words/kr.md) 한국어
+##### [es.md](https://github.com/aitrados/finance-trading-ai-agents-mcp/blob/main/finance_trading_ai_agents_mcp/assistive_tools/basic_system_function_call_prompt_words/es.md) Español
+##### [ru.md](https://github.com/aitrados/finance-trading-ai-agents-mcp/blob/main/finance_trading_ai_agents_mcp/assistive_tools/basic_system_function_call_prompt_words/ru.md) Русский
+##### [zh_cn.md](https://github.com/aitrados/finance-trading-ai-agents-mcp/blob/main/finance_trading_ai_agents_mcp/assistive_tools/basic_system_function_call_prompt_words/zh_cn.md) 简体中文
+##### [zh_tw.md](https://github.com/aitrados/finance-trading-ai-agents-mcp/blob/main/finance_trading_ai_agents_mcp/assistive_tools/basic_system_function_call_prompt_words/zh_tw.md) 繁体中文
 
 
 ## Examples
@@ -61,7 +67,8 @@ pip install finance-trading-ai-agents-mcp
 ```bash
 git clone https://github.com/aitrados/finance-trading-ai-agents-mcp.git
 cd finance-trading-ai-agents-mcp
-pip install -e .
+pip install -r requirements.txt
+#pip install -e .
 ```
 
 ## 🚀 Quick Start
@@ -70,22 +77,33 @@ pip install -e .
 
 ```python
 from finance_trading_ai_agents_mcp import mcp_run
-from finance_trading_ai_agents_mcp.examples.env_example import get_example_env
 if __name__ == "__main__":
-    get_example_env()
+    #from examples.env_example import get_example_env
+    #get_example_env()
     mcp_run()
 ```
+or easy command
+```bash
+# auto finding .env file
+python -m finance-trading-ai-agents-mcp #or finance-trading-ai-agents-mcp
+
+#Specify .env file path
+finance-trading-ai-agents-mcp --env-file .env
+````
 
 ### Intermediate usage
 
 ###### Custom MCP server and custom MCP functions
+
 ```python
 from finance_trading_ai_agents_mcp import mcp_run
-from finance_trading_ai_agents_mcp.examples.env_example import get_example_env
+from examples.env_example import get_example_env
+
 if __name__ == "__main__":
     get_example_env()
-    from finance_trading_ai_agents_mcp.examples.addition_custom_mcp_examples.addition_custom_mcp_example import \
+    from examples.addition_custom_mcp_examples.addition_custom_mcp_example import
         AdditionCustomMcpExample
+
     AdditionCustomMcpExample()
     mcp_run()
     # or
@@ -95,10 +113,12 @@ if __name__ == "__main__":
 ### Advanced usage
 
 ###### Real-time WebSocket Data Integration with MCP Server
+
 ```python
 from aitrados_api.universal_interface.callback_manage import CallbackManage
 from finance_trading_ai_agents_mcp import mcp_run
-from finance_trading_ai_agents_mcp.examples.env_example import get_example_env
+from examples.env_example import get_example_env
+
 """
 Real-time WebSocket Data Integration with MCP Server
 
@@ -151,38 +171,40 @@ providing both AI capabilities and custom application logic in a single, efficie
 """
 
 
-def multi_timeframe_callback(*args,**kwargs):
-    print("Multi-timeframe data received:", args,kwargs)
+def multi_timeframe_callback(*args, **kwargs):
+    print("Multi-timeframe data received:", args, kwargs)
 
 
-def event_handle_callback(client, *args,**kwargs):
-    print("Event data received:", args,kwargs)
+def event_handle_callback(client, *args, **kwargs):
+    print("Event data received:", args, kwargs)
 
 
-def news_handle_callback(client, *args,**kwargs):
-    print("News data received:", args,kwargs)
+def news_handle_callback(client, *args, **kwargs):
+    print("News data received:", args, kwargs)
 
 
-def auth_handle_callback(client, *args,**kwargs):
-    print("Auth message received:", args,kwargs)
+def auth_handle_callback(client, *args, **kwargs):
+    print("Auth message received:", args, kwargs)
 
 
-def general_handle_callback(client, *args,**kwargs):
-    print("General message received:", args,kwargs)
+def general_handle_callback(client, *args, **kwargs):
+    print("General message received:", args, kwargs)
 
 
-def show_subscribe_handle_callback(client, *args,**kwargs):
-    print("Subscribe handle message received:", args,kwargs)
+def show_subscribe_handle_callback(client, *args, **kwargs):
+    print("Subscribe handle message received:", args, kwargs)
 
 
-def ohlc_chart_flow_streaming_callback(*args,**kwargs):
-    print("OHLC chart flow streaming data received:", args,kwargs)
+def ohlc_chart_flow_streaming_callback(*args, **kwargs):
+    print("OHLC chart flow streaming data received:", args, kwargs)
 
 
-def ohlc_handle_callback(client, *args,**kwargs):
-    print("OHLC handle message received:", args,kwargs)
-def error_handle_callback(client, *args,**kwargs):
-    print("Error handle message received:", args,kwargs)
+def ohlc_handle_callback(client, *args, **kwargs):
+    print("OHLC handle message received:", args, kwargs)
+
+
+def error_handle_callback(client, *args, **kwargs):
+    print("Error handle message received:", args, kwargs)
 
 
 if __name__ == "__main__":
@@ -199,13 +221,18 @@ if __name__ == "__main__":
     CallbackManage.add_custom_ohlc_handle_msg(ohlc_handle_callback)
     CallbackManage.add_custom_error_msgs(error_handle_callback)
 
-
     mcp_run()
 ```
 
 ### Command Line Interface (CLI)
 
 ```bash
+# auto finding .env file
+python -m finance-trading-ai-agents-mcp #or finance-trading-ai-agents-mcp
+
+#Specify .env file path
+finance-trading-ai-agents-mcp --env-file .env
+
 # --env-config
 --env-config '{"DEBUG":"1","AITRADOS_SECRET_KEY":"YOUR_SECRET_KEY","OHLC_LIMIT_FOR_LLM":"20","RENAME_COLUMN_NAME_MAPPING_FOR_LLM":"interval:timeframe,","OHLC_COLUMN_NAMES_FOR_LLM":"timeframe,close_datetime,open,high,low,close,volume","LIVE_STREAMING_OHLC_LIMIT":"150","ENABLE_RPC_PUBSUB_SERVICE":"1"}'
 
@@ -215,9 +242,9 @@ finance-trading-ai-agents-mcp --help
 # Start the service
 finance-trading-ai-agents-mcp --env-config '{"DEBUG":"1","AITRADOS_SECRET_KEY":"YOUR_SECRET_KEY"}'
 
-finance-trading-ai-agents-mcp --env-file .env
+
 # Run with custom MCP server and custom MCP functions from Python file
-python -m finance_trading_ai_agents_mcp -c finance_trading_ai_agents_mcp/examples/addition_custom_mcp_examples/addition_custom_mcp_example.py --env-config '{"DEBUG":"1","AITRADOS_SECRET_KEY":"YOUR_SECRET_KEY"}'
+python -m finance_trading_ai_agents_mcp -c examples/addition_custom_mcp_examples/addition_custom_mcp_example.py --env-config '{"DEBUG":"1","AITRADOS_SECRET_KEY":"YOUR_SECRET_KEY"}'
 
 # Specify port
 python -m finance_trading_ai_agents_mcp -p 9000 --env-config '{"DEBUG":"1","AITRADOS_SECRET_KEY":"YOUR_SECRET_KEY"}'

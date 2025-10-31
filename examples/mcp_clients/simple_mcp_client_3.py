@@ -7,6 +7,7 @@ from fastmcp import Client
 from finance_trading_ai_agents_mcp import analysis_department
 
 from finance_trading_ai_agents_mcp.assistive_tools.assistive_tools_utils import get_client_mcp_config
+from finance_trading_ai_agents_mcp.assistive_tools.mcp_tools_converter import LlmCallToolConverter
 
 departments=[
  analysis_department.PRICE_ACTION
@@ -24,24 +25,24 @@ async def main():
         print(json.dumps(tool_data))
 
         # Execute operations
-        result = await client.call_tool("get_latest_ohlc",
+        result = await LlmCallToolConverter(client).call_tool("get_latest_ohlc",
                                         {"full_symbol": "STOCK:US:AAPL", "interval": "DAY", "format": "CSV",
                                          "limit": 150, "is_eth": False})
         print(result)
 
-        result = await client.call_tool("get_multi_timeframe_live_streaming_ohlc",
+        result = await LlmCallToolConverter(client).call_tool("get_multi_timeframe_live_streaming_ohlc",
                                         {"full_symbol": "CRYPTO:GLOBAL:BTCUSD", "intervals": ["5m", "day"]})
         print(result)
 
 
-        result = await client.call_tool("get_live_streaming_ohlc",
+        result = await LlmCallToolConverter(client).call_tool("get_live_streaming_ohlc",
                                         {"full_symbol": "CRYPTO:GLOBAL:BTCUSD", "interval": "day"})
         print(result)
 
 
 
 
-        result2 = await client.call_tool("get_multi_timeframe_live_streaming_ohlc",
+        result2 = await LlmCallToolConverter(client).call_tool("get_multi_timeframe_live_streaming_ohlc",
                                          {"full_symbol": "CRYPTO:GLOBAL:BTCUSD", "intervals": ["day"]})
         print(result2)
 
@@ -51,7 +52,7 @@ async def main():
 
         }
 
-        result3 = await client.call_tool("get_multi_symbol_multi_timeframe_live_streaming_ohlc",
+        result3 = await LlmCallToolConverter(client).call_tool("get_multi_symbol_multi_timeframe_live_streaming_ohlc",
                                          {"item_data": item_data})
 
         print(result3)

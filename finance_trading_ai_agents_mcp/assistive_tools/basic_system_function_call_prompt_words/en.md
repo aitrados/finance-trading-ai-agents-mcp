@@ -49,5 +49,5 @@ This parameter defines the timeframe of OHLC data.
 
 # OHLC Data Tool Selection (MUST prioritize live streaming data calls)
 ## 1. When calling OHLC function calls, if no special requirements, MUST prioritize functions with `live_streaming_ohlc` in name
-## 2. For multi-timeframe trading needs (requires time window alignment), use functions with `multi_timeframe_live_streaming_ohlc` in name  
+## 2. For multi-timeframe trading needs (requires time window alignment), use functions with `multi_timeframe_live_streaming_ohlc` in name
 ## 3. For multi-symbol multi-timeframe mixed trading (requires time frame alignment), use functions with `multi_symbol_multi_timeframe_live_streaming_ohlc` in name

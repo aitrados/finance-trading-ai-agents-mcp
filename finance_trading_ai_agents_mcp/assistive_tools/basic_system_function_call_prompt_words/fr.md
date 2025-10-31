@@ -37,11 +37,17 @@ Ce paramètre définit l’unité de temps (timeframe) des données OHLC.
     *   Trading court terme : `60M`, `30M`, `15M`
     *   Trading très court terme : `5M`, `3M`, `1M`
 
-## 3. Paramètre `format` :
-*   Pris en charge : `json`, `csv`
-*   Recommandé : `csv` — réduit efficacement la longueur des chaînes et améliore l’efficacité de transmission
-*   `json` convient mieux au traitement de données structurées complexes
-*   Si l’utilisateur ne précise rien, privilégiez `csv`
+## 3. `format`\-Paramètre:
+*   Pris en charge : `json`, `csv`
+*   **Utiliser `csv` par défaut** \- réduit la longueur de la chaîne et améliore l'efficacité de transmission. DOIT utiliser `csv` sauf si l'utilisateur le demande explicitement autrement
+*   Le format `json` est préférable pour des données structurées complexes
+*   Si non spécifié, DOIT choisir `csv`
 
-## 4. Paramètre `limit` :
-*   Limite le nombre de lignes de sortie ; plus le nombre est élevé, plus la chaîne résultante est longue
+## 4. `limit`\-Paramètre:
+*   Limite le nombre de lignes de sortie \- plus de lignes = chaînes plus longues
+*   DOIT utiliser la valeur par défaut sauf si l'utilisateur précise explicitement `limit`
+
+# Sélection de l'outil de données OHLC (DOIT prioriser les appels de données en streaming en direct)
+## 1. Lors des appels de fonctions OHLC, s'il n'y a pas d'exigences particulières, DOIT prioriser les fonctions ayant `live_streaming_ohlc` dans le nom
+## 2. Pour les besoins de trading multi\-timeframe (nécessite l'alignement des fenêtres temporelles), utiliser les fonctions ayant `multi_timeframe_live_streaming_ohlc` dans le nom
+## 3. Pour le trading mixte multi\-symbole multi\-timeframe (nécessite l'alignement des cadres temporels), utiliser les fonctions ayant `multi_symbol_multi_timeframe_live_streaming_ohlc` dans le nom

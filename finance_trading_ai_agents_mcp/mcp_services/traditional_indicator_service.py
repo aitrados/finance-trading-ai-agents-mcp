@@ -2,6 +2,7 @@
 
 from typing import List
 
+from aitrados_api.common_lib.common import get_env_value
 from aitrados_api.common_lib.contant import ApiDataFormat
 from fastmcp import FastMCP, Context
 from loguru import logger
@@ -10,11 +11,12 @@ from pydantic import Field
 from finance_trading_ai_agents_mcp.live_streaming_ohlc_operations.live_streaming_ohlc_operation import \
     LiveStreamingOriginalOhlcOperation
 
-from finance_trading_ai_agents_mcp.mcp_services.global_instance import default_ohlc_limit
+from finance_trading_ai_agents_mcp.mcp_services.global_instance import McpGlobalVar
 from finance_trading_ai_agents_mcp.mcp_services.special_tools.ohlc_data_common_mcp_tool import ohlc_list_tool
 from finance_trading_ai_agents_mcp.mcp_services.traditional_indicator_operations.traditional_indicator_ops import \
     TraditionalIndicatorOps
-from finance_trading_ai_agents_mcp.utils.common_utils import get_env_value, mcp_get_api_params, show_mcp_result
+from finance_trading_ai_agents_mcp.utils.common_utils import mcp_get_api_params, show_mcp_result
+
 
 mcp = FastMCP("Traditional indicators")
 
@@ -31,10 +33,11 @@ async def get_traditional_indicators(context: Context,
                                                                    description="List of technical indicators,Use at least one",
                                                                    min_length=1, max_length=5),
                                      ma_periods: List[int] = Field([5, 10, 20, 60],
-                                                                   description="Moving average periods", min_length=1,
+                                                                   description=f"MA or EMA periods.array element value must be less {McpGlobalVar.live_streaming_ohlc_limit()}", min_length=1,
                                                                    max_length=10),
-                                     limit: int = Field(default_ohlc_limit, description="Number of rows to return",
-                                                        ge=1, le=150),
+                                     limit: int = Field(McpGlobalVar.default_ohlc_limit(), description="Number of rows to return",
+                                                        ge=1, le=McpGlobalVar.live_streaming_ohlc_limit()),
+
                                      format: str = Field(ApiDataFormat.CSV, description="Output format: csv or json"),
                                      is_eth: bool = Field(False, description="Include US stock extended hours data"),
                                      ):

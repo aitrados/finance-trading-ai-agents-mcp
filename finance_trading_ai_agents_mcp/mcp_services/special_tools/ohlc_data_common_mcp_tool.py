@@ -13,10 +13,8 @@ from pydantic import Field
 
 from aitrados_api.universal_interface.timeframe_item_management import TimeframeItemManager
 from finance_trading_ai_agents_mcp.mcp_result_control.common_control import CommonControl
-from finance_trading_ai_agents_mcp.mcp_services.global_instance import rename_column_name_mapping, filter_column_names, \
-    default_ohlc_limit
-from finance_trading_ai_agents_mcp.utils.common_utils import split_full_symbol, mcp_get_api_params, get_env_value, \
-    show_mcp_result
+from finance_trading_ai_agents_mcp.mcp_services.global_instance import McpGlobalVar
+from finance_trading_ai_agents_mcp.utils.common_utils import split_full_symbol, mcp_get_api_params,show_mcp_result
 from aitrados_api.trade_middleware_service.trade_middleware_service_instance import AitradosApiServiceInstance
 
 
@@ -43,8 +41,8 @@ class StreamingOhlcOperation:
                 interval = df["interval"][0]
 
                 to_format = AnyListDataToFormatData(df,
-                                                      rename_column_name_mapping=rename_column_name_mapping,
-                                                      filter_column_names=filter_column_names, limit=limit)
+                                                      rename_column_name_mapping=McpGlobalVar.rename_column_name_mapping(),
+                                                      filter_column_names=McpGlobalVar.filter_column_names(), limit=limit)
                 if format_ == "json":
                     string=json.dumps(to_format.get_list())
                 else:
@@ -76,7 +74,7 @@ def ohlc_list_tool(mcp:FastMCP):
                                    full_symbol: str,
                                    interval: str = "day",
 
-                                   limit: int = Field(default_ohlc_limit, description="row number of results", ge=1, le=150),
+                                   limit: int = Field(McpGlobalVar.default_ohlc_limit(), description="row number of results", ge=1, le=McpGlobalVar.live_streaming_ohlc_limit()),
                                    is_eth: bool = Field(False, description="Whether to include US stock extended hours data"),
                                       format: str = ApiDataFormat.CSV,
                                    ):
@@ -100,7 +98,7 @@ def ohlc_list_tool(mcp:FastMCP):
                                                       full_symbol: str,
                                                       intervals: Union[List[str]] = ["DAY"],
                                                         format: str = ApiDataFormat.CSV,
-                                                        limit: int = Field(default_ohlc_limit, description="row number of results", ge=1, le=150),
+                                                        limit: int = Field(McpGlobalVar.default_ohlc_limit(), description="row number of results", ge=1, le=McpGlobalVar.live_streaming_ohlc_limit()),
                                                         is_eth: bool = Field(False, description="Whether to include US stock extended hours data"),
                                                       ):
 
@@ -126,7 +124,7 @@ def ohlc_list_tool(mcp:FastMCP):
     async def get_multi_symbol_multi_timeframe_live_streaming_ohlc(context: Context,
                                                                    item_data:dict,
                                                                    format: str = ApiDataFormat.CSV,
-                                                                   limit: int = Field(default_ohlc_limit, description="row number of results", ge=1, le=150),
+                                                                   limit: int = Field(McpGlobalVar.default_ohlc_limit(), description="row number of results", ge=1, le=McpGlobalVar.live_streaming_ohlc_limit()),
                                                                    is_eth: bool = Field(False,
                                                                                         description="Whether to include US stock extended hours data"),
                                                                    ):
@@ -176,7 +174,7 @@ def ohlc_list_tool(mcp:FastMCP):
             ohlc_latest = await AitradosApiServiceInstance.api_client.ohlc.a_ohlcs_latest(**params)
 
             cc=CommonControl(ohlc_latest).result()
-            result= cc.to_list_data(  rename_column_name_mapping=rename_column_name_mapping,  filter_column_names=filter_column_names,limit=limit,format=format)
+            result= cc.to_list_data(  rename_column_name_mapping=McpGlobalVar.rename_column_name_mapping(),  filter_column_names=McpGlobalVar.filter_column_names(),limit=limit,format=format)
             show_mcp_result(mcp, result)
             return result
         except Exception as e:

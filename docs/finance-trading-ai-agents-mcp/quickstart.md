@@ -36,13 +36,14 @@ pip install finance-trading-ai-agents-mcp
 
 ## 2. Fastest path to run (Python)
 Save the following as main.py and run it:
+
 ```python
 from finance_trading_ai_agents_mcp import mcp_run
-from finance_trading_ai_agents_mcp.examples.env_example import get_example_env
+from examples.env_example import get_example_env
 
 if __name__ == "__main__":
     get_example_env()  # write example environment variables
-    mcp_run()          # start the MCP service
+    mcp_run()  # start the MCP service
 ```
 After it starts, open your browser at: http://127.0.0.1:11999/
 
@@ -88,13 +89,15 @@ Advanced options (optional):
 
 ## 5. A few advanced steps (optional)
 - Custom MCP services and functions:
+
 ```python
 from finance_trading_ai_agents_mcp import mcp_run
-from finance_trading_ai_agents_mcp.examples.env_example import get_example_env
+from examples.env_example import get_example_env
 
 if __name__ == "__main__":
     get_example_env()
-    from finance_trading_ai_agents_mcp.examples.addition_custom_mcp_examples.addition_custom_mcp_example import AdditionCustomMcpExample
+    from examples.addition_custom_mcp_examples.addition_custom_mcp_example import AdditionCustomMcpExample
+
     AdditionCustomMcpExample()
     mcp_run()
 ```

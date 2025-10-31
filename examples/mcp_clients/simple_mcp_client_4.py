@@ -7,6 +7,7 @@ from fastmcp import Client
 from finance_trading_ai_agents_mcp import analysis_department
 
 from finance_trading_ai_agents_mcp.assistive_tools.assistive_tools_utils import get_client_mcp_config
+from finance_trading_ai_agents_mcp.assistive_tools.mcp_tools_converter import LlmCallToolConverter
 
 departments=[
  analysis_department.NEWS
@@ -24,7 +25,7 @@ async def main():
         print(json.dumps(tool_data))
 
         # Execute operations
-        result = await client.call_tool("get_latest_news_list",
+        result = await LlmCallToolConverter(client).call_tool("get_latest_news_list",
                                         {"full_symbol": "STOCK:US:AAPL",
                                          "limit": 5,
                                          }

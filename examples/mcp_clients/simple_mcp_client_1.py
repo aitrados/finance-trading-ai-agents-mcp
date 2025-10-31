@@ -5,6 +5,8 @@ from fastmcp import Client
 
 from finance_trading_ai_agents_mcp import analysis_department
 from finance_trading_ai_agents_mcp.assistive_tools.assistive_tools_utils import get_client_mcp_config,get_basic_system_function_call_prompt
+from finance_trading_ai_agents_mcp.assistive_tools.mcp_tools_converter import LlmCallToolConverter
+
 function_call_prompt=get_basic_system_function_call_prompt("en")
 departments=[
  analysis_department.ECONOMIC_CALENDAR
@@ -22,7 +24,7 @@ async def main():
         print(json.dumps(tool_data))
 
 
-        result = await client.call_tool("get_latest_economic_calendar_event_list", {"country_iso_code": "us","event_code":"EMPLOYMENT_INITIAL_JOBLESS_CLAIMS"})
+        result = await LlmCallToolConverter(client).call_tool("get_latest_economic_calendar_event_list", {"country_iso_code": "us","event_code":"EMPLOYMENT_INITIAL_JOBLESS_CLAIMS"})
 
         print(result)
 asyncio.run(main())

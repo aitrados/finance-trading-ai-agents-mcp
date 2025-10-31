@@ -45,27 +45,37 @@ export AITRADOS_SECRET_KEY="YOUR_SECRET_KEY"
 
 
 # Use default port 11999
+
+
+```shell
+# auto finding .env file
+python -m finance-trading-ai-agents-mcp #or finance-trading-ai-agents-mcp
+
+#Specify .env file path
+python -m finance_trading_ai_agents_mcp --env-file .env
 ```
+
+```shell
 python -m finance_trading_ai_agents_mcp --env-config {"DEBUG":"1","AITRADOS_SECRET_KEY":"YOUR_SECRET_KEY"}
-or 
+
+#or 
+
 finance-trading-ai-agents-mcp --env-config {"DEBUG":"1","AITRADOS_SECRET_KEY":"YOUR_SECRET_KEY"}
 ```
 
 # Use --env-config
-```
+```shell
 python -m finance_trading_ai_agents_mcp --env-config '{"DEBUG":"1","AITRADOS_SECRET_KEY":"YOUR_SECRET_KEY","OHLC_LIMIT_FOR_LLM":"20","RENAME_COLUMN_NAME_MAPPING_FOR_LLM":"interval:timeframe,","OHLC_COLUMN_NAMES_FOR_LLM":"timeframe,close_datetime,open,high,low,close,volume","LIVE_STREAMING_OHLC_LIMIT":"150","ENABLE_RPC_PUBSUB_SERVICE":"1"}'
 
-python -m finance_trading_ai_agents_mcp --env-file .env
-or 
 
 finance-trading-ai-agents-mcp --env-config '{"DEBUG":"1","AITRADOS_SECRET_KEY":"YOUR_SECRET_KEY","OHLC_LIMIT_FOR_LLM":"20","RENAME_COLUMN_NAME_MAPPING_FOR_LLM":"interval:timeframe,","OHLC_COLUMN_NAMES_FOR_LLM":"timeframe,close_datetime,open,high,low,close,volume","LIVE_STREAMING_OHLC_LIMIT":"150"}'
 ```
 # Specify port
-```
+```shell
 python -m finance_trading_ai_agents_mcp -p 9000 --env-config '{"DEBUG":"1","AITRADOS_SECRET_KEY":"YOUR_SECRET_KEY"}'
 ```
 # Run with custom MCP server and custom MCP functions from Python file
-```
+```shell
 python -m finance_trading_ai_agents_mcp -c finance_trading_ai_agents_mcp/examples/addition_custom_mcp_examples/addition_custom_mcp_example.py --env-config {"DEBUG":"1","AITRADOS_SECRET_KEY":"YOUR_SECRET_KEY"}
 
 ```

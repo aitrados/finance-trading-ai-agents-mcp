@@ -1,3 +1,4 @@
+from finance_trading_ai_agents_mcp.mcp_services.global_instance import McpGlobalVar
 from finance_trading_ai_agents_mcp.utils.common_utils import get_content_from_file_or_url
 from finance_trading_ai_agents_mcp.utils.contant import SystemPromptLanguage
 from pathlib import Path
@@ -9,7 +10,11 @@ def get_basic_system_function_call_prompt(lang='en',file_or_url:str=None,header=
     if not file_or_url:
         base_dir = Path(__file__).parent / "basic_system_function_call_prompt_words"
         file_or_url = base_dir / f"{lang}.md"
-    return get_content_from_file_or_url(file_or_url,header)
+    content = get_content_from_file_or_url(file_or_url, header)
+    if isinstance(content,str):
+        content=content.replace("{live_streaming_ohlc_limit}",str(McpGlobalVar.live_streaming_ohlc_limit()))
+    return content
+
 
 
 

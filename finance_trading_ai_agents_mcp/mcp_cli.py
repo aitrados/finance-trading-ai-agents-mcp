@@ -7,7 +7,7 @@ import os
 
 from aitrados_api.common_lib.common import load_env_file
 
-from .mcp_manage import mcp_run
+
 from .utils.common_utils import generate_custom_mcp_template
 
 
@@ -194,7 +194,7 @@ JSON Config Example:
             print("=" * 60)
             print("Press Ctrl+C to stop the server")
             print()
-
+            from .mcp_manage import mcp_run
             mcp_run(
                 port=args.port,
                 host=args.host,

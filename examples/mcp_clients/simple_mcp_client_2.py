@@ -26,9 +26,9 @@ async def main():
 
         # Execute operations
 
-        result = await client.call_tool("get_traditional_indicators",
+        result = await LlmCallToolConverter(client).call_tool("get_traditional_indicators",
                                         {"full_symbol": "CRYPTO:GLOBAL:BTCUSD",
-                                         "interval": "60",
+                                         "interval": "60M",
                                          "format": "CSV",
                                          "limit": 30,
                                          "is_eth": False,
@@ -40,7 +40,7 @@ async def main():
 
         result = await LlmCallToolConverter(client).call_tool("get_traditional_indicators",
                                         {"full_symbol": "CRYPTO:GLOBAL:BTCUSD",
-                                         "interval": "60",
+                                         "interval": "60M",
                                          "format": "CSV",
                                          "limit": 30,
                                          "is_eth": False,

@@ -1,12 +1,7 @@
 import os
 from typing import List
-
+from aitrados_api.common_lib.common import get_env_value
 from fastmcp import FastMCP
-
-from finance_trading_ai_agents_mcp.utils.common_utils import get_env_value
-
-default_ohlc_limit = get_env_value("OHLC_LIMIT_FOR_LLM", 150)
-
 def get_rename_column_name_mapping():
     string = os.getenv("RENAME_COLUMN_NAME_MAPPING_FOR_LLM",
                                 None)
@@ -32,8 +27,42 @@ def get_filter_column_names():
     column_name_str = column_name_str.strip(",")
     keys_array = str.split(column_name_str, ",")
     return keys_array
-rename_column_name_mapping=get_rename_column_name_mapping()
-filter_column_names=get_filter_column_names()
+
+
+
+class McpGlobalVar:
+    __default_ohlc_limit=None
+    __rename_column_name_mapping=None
+    __filter_column_names=None
+    __live_streaming_ohlc_limit=None
+
+
+    @classmethod
+    def rename_column_name_mapping(cls):
+        if cls.__rename_column_name_mapping is None:
+            cls.__rename_column_name_mapping=get_rename_column_name_mapping()
+        return cls.__rename_column_name_mapping
+
+
+    @classmethod
+    def filter_column_names(cls):
+        if cls.__filter_column_names is None:
+            cls.__filter_column_names=get_filter_column_names()
+        return cls.__filter_column_names
+
+
+    @classmethod
+    def default_ohlc_limit(cls):
+        if cls.__default_ohlc_limit is None:
+            cls.__default_ohlc_limit=get_env_value("OHLC_LIMIT_FOR_LLM", 150)
+        return cls.__default_ohlc_limit
+    @classmethod
+    def live_streaming_ohlc_limit(cls):
+        if cls.__live_streaming_ohlc_limit is None:
+            cls.__live_streaming_ohlc_limit=get_env_value("LIVE_STREAMING_OHLC_LIMIT", 150)
+        return cls.__live_streaming_ohlc_limit
+
+
 
 
 

@@ -6,8 +6,7 @@ from aitrados_api.latest_ohlc_multi_timeframe_alignment_flow.unique_name_generat
 from aitrados_api.universal_interface.timeframe_item_management import TimeframeItemManager
 
 
-from finance_trading_ai_agents_mcp.mcp_services.global_instance import rename_column_name_mapping, filter_column_names, \
-    default_ohlc_limit
+from finance_trading_ai_agents_mcp.mcp_services.global_instance import McpGlobalVar
 
 class LiveStreamingOriginalOhlcOperation:
     def __init__(self):
@@ -39,12 +38,12 @@ class LiveStreamingOriginalOhlcOperation:
     def filter_ohlc_data_df( ohlc_data:dict,preserve_columns=[]):
         for full_symbol in list(ohlc_data.keys()):
             for i, df in enumerate(ohlc_data[full_symbol]):
-                filter_column_names_=filter_column_names.copy()
+                filter_column_names_=McpGlobalVar.filter_column_names().copy()
                 filter_column_names_.extend(preserve_columns)
 
                 modified_df =  AnyListDataToFormatData(df,
-                                                    rename_column_name_mapping=rename_column_name_mapping,
-                                                    filter_column_names=filter_column_names_, limit=default_ohlc_limit).get_polars()
+                                                    rename_column_name_mapping=McpGlobalVar.rename_column_name_mapping(),
+                                                    filter_column_names=filter_column_names_, limit=McpGlobalVar.default_ohlc_limit()).get_polars()
                 ohlc_data[full_symbol][i] = modified_df
         return ohlc_data
 
@@ -58,8 +57,8 @@ class LiveStreamingOriginalOhlcOperation:
 {content}
 ```"""
         interval_key="interval"
-        if rename_column_name_mapping and interval_key in rename_column_name_mapping:
-            interval_key=rename_column_name_mapping[interval_key]
+        if McpGlobalVar.rename_column_name_mapping() and interval_key in McpGlobalVar.rename_column_name_mapping():
+            interval_key=McpGlobalVar.rename_column_name_mapping()[interval_key]
 
         result_string = ""
         for full_symbol in list(ohlc_data.keys()):
