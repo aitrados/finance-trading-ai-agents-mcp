@@ -26,7 +26,7 @@ A free, professional, open-source financial analysis and quantitative trading MC
 ## GitHub
 - Repository: https://github.com/aitrados/finance-trading-ai-agents-mcp
 - Embed system prompts into your LLM (e.g., LangChain): https://github.com/aitrados/finance-trading-ai-agents-mcp/tree/main/basic_system_prompt_words
-- Simple examples: https://github.com/aitrados/finance-trading-ai-agents-mcp/tree/main/finance_trading_ai_agents_mcp/examples
+- Simple examples: https://github.com/aitrados/finance-trading-ai-agents-mcp/tree/main/examples
 
 ## 1. Installation
 - Recommended (PyPI):
@@ -66,7 +66,7 @@ python -m finance_trading_ai_agents_mcp -p 9000 --env-config {"DEBUG":"1","AITRA
 ```
 - Use a custom MCP capability file:
 ```bash
-python -m finance_trading_ai_agents_mcp -c finance_trading_ai_agents_mcp/examples/addition_custom_mcp_examples/addition_custom_mcp_example.py --env-config {"DEBUG":"1","AITRADOS_SECRET_KEY":"YOUR_SECRET_KEY"}
+python -m finance_trading_ai_agents_mcp -c examples/addition_custom_mcp_examples/addition_custom_mcp_example.py --env-config {"DEBUG":"1","AITRADOS_SECRET_KEY":"YOUR_SECRET_KEY"}
 ```
 
 ## 4. Required environment configuration (minimal)

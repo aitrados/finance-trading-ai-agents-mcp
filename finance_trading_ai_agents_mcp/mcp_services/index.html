@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -130,19 +131,71 @@
             transform: translateY(-2px);
         }
         .star-button {
-            background: linear-gradient(90deg, #ffd700, #ffed4e);
-            color: #333;
+            background: linear-gradient(90deg, #28a745, #20c997);
+            color: white;
             padding: 12px 24px;
             border-radius: 25px;
             text-decoration: none;
             font-weight: bold;
             font-size: 1.1em;
-            box-shadow: 0 4px 12px rgba(255,215,0,0.3);
+            box-shadow: 0 4px 12px rgba(40,167,69,0.3);
             transition: all 0.3s ease;
         }
         .star-button:hover {
             transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(255,215,0,0.4);
+            box-shadow: 0 6px 20px rgba(40,167,69,0.4);
+            background: linear-gradient(90deg, #218838, #1dd1a1);
+        }
+        .community-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            margin: 30px 0;
+            text-align: center;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        .community-title {
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            color: white;
+        }
+        .community-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 15px;
+        }
+        .community-btn {
+            background: rgba(255,255,255,0.2);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1em;
+            border: 2px solid rgba(255,255,255,0.3);
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+        .community-btn:hover {
+            background: rgba(255,255,255,0.3);
+            border-color: rgba(255,255,255,0.6);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        .wechat-btn {
+            background: linear-gradient(45deg, #07c160, #00d060);
+        }
+        .wechat-btn:hover {
+            background: linear-gradient(45deg, #06ad56, #00b050);
+        }
+        .discord-btn {
+            background: linear-gradient(45deg, #5865f2, #7289da);
+        }
+        .discord-btn:hover {
+            background: linear-gradient(45deg, #4752c4, #677bc4);
         }
     </style>
 </head>
@@ -162,6 +215,19 @@
             <a href="https://github.com/aitrados/finance-trading-ai-agents-mcp" target="_blank">
                 📁 View source code and full documentation
             </a>
+        </div>
+
+        <div class="community-section">
+            <h3 class="community-title">💬 加入我们的社区讨论</h3>
+            <p>Join our community for discussions, support, and updates!</p>
+            <div class="community-links">
+                <a href="https://docs.aitrados.com/wechat_group.png" target="_blank" class="community-btn wechat-btn">
+                    🧑‍💻 微信讨论群
+                </a>
+                <a href="https://discord.gg/aNjVgzZQqe" target="_blank" class="community-btn discord-btn">
+                    🎮 Discord Community
+                </a>
+            </div>
         </div>
 
         <h2 class="section-title">📊 Available Endpoints</h2>

@@ -76,6 +76,6 @@ python -m finance_trading_ai_agents_mcp -p 9000 --env-config '{"DEBUG":"1","AITR
 ```
 # Run with custom MCP server and custom MCP functions from Python file
 ```shell
-python -m finance_trading_ai_agents_mcp -c finance_trading_ai_agents_mcp/examples/addition_custom_mcp_examples/addition_custom_mcp_example.py --env-config {"DEBUG":"1","AITRADOS_SECRET_KEY":"YOUR_SECRET_KEY"}
+python -m finance_trading_ai_agents_mcp -c examples/addition_custom_mcp_examples/addition_custom_mcp_example.py --env-config {"DEBUG":"1","AITRADOS_SECRET_KEY":"YOUR_SECRET_KEY"}
 
 ```

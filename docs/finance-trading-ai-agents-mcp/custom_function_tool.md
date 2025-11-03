@@ -15,7 +15,7 @@ If you need to add more function tools to the existing mcp server, the following
 
 ## Full EXAMPLES
 
-https://github.com/aitrados/finance-trading-ai-agents-mcp/tree/main/finance_trading_ai_agents_mcp/examples/addition_custom_mcp_examples
+https://github.com/aitrados/finance-trading-ai-agents-mcp/tree/main/examples/addition_custom_mcp_examples
 
 
 ```python

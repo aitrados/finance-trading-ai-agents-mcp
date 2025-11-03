@@ -6,6 +6,15 @@
 
 A free, professional, open-source financial analysis and quantitative trading MCP server. It lets you deploy a local financial MCP service with one command, using a departmental architecture that simulates a real financial firm's operations. It supports traditional indicators, price action analysis, economic calendar, fundamentals, and news integration—providing seamless interaction with LLMs and algorithmic trading.
 
+
+## 💬 Community & Support
+
+[![WeChat Group](https://img.shields.io/badge/💬_微信讨论群-07C160?style=for-the-badge&logo=wechat&logoColor=white)](https://docs.aitrados.com/wechat_group.png)
+[![Discord](https://img.shields.io/badge/🎮_Discord_Community-5865F2?style=for-the-badge&logo=discord&logoColor=white)](https://discord.gg/aNjVgzZQqe)
+
+Join our community for discussions, support, and updates!
+
+
 ## ✨ Features
 
 - 🚀 One-click deployment: Quickly spin up a local financial MCP service
@@ -48,10 +57,10 @@ Get it here: https://www.aitrados.com/
 
 ## Examples
 
-##### [finance_trading_ai_agents_mcp/examples/addition_custom_mcp_examples](https://github.com/aitrados/finance-trading-ai-agents-mcp/blob/main/finance_trading_ai_agents_mcp/examples/addition_custom_mcp_examples)
-##### [finance_trading_ai_agents_mcp/examples/mcp_clients](https://github.com/aitrados/finance-trading-ai-agents-mcp/blob/main/finance_trading_ai_agents_mcp/examples/mcp_clients)
-##### [finance_trading_ai_agents_mcp/examples/run_mcp_examples](https://github.com/aitrados/finance-trading-ai-agents-mcp/blob/main/finance_trading_ai_agents_mcp/examples/run_mcp_examples)
-##### [finance_trading_ai_agents_mcp/examples/env_example.py](https://github.com/aitrados/finance-trading-ai-agents-mcp/blob/main/finance_trading_ai_agents_mcp/examples/env_example.py)
+##### [examples/addition_custom_mcp_examples](https://github.com/aitrados/finance-trading-ai-agents-mcp/blob/main/examples/addition_custom_mcp_examples)
+##### [examples/mcp_clients](https://github.com/aitrados/finance-trading-ai-agents-mcp/blob/main/examples/mcp_clients)
+##### [examples/run_mcp_examples](https://github.com/aitrados/finance-trading-ai-agents-mcp/blob/main/examples/run_mcp_examples)
+##### [examples/env_example.py](https://github.com/aitrados/finance-trading-ai-agents-mcp/blob/main/examples/env_example.py)
 
 
 ## 📦 Installation
@@ -85,7 +94,7 @@ if __name__ == "__main__":
 or easy command
 ```bash
 # auto finding .env file
-python -m finance-trading-ai-agents-mcp #or finance-trading-ai-agents-mcp
+finance-trading-ai-agents-mcp #or python -m finance-trading-ai-agents-mcp
 
 #Specify .env file path
 finance-trading-ai-agents-mcp --env-file .env
