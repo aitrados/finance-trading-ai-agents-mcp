@@ -1,0 +1,15 @@
+auto_run_brokers=[]#["okx_demo"]
+[broker]
+    [broker.okx_demo]
+        display_name="OKX simulation"
+        provider = "okx"
+        api_key = "xxxxx"
+        secret_key = "xxxx"
+        passphrase = "xxx"
+        server = "demo"
+        spread_trading = "false"
+        #proxy_host = "127.0.0.1"
+        #proxy_port = 8080
+
+
+

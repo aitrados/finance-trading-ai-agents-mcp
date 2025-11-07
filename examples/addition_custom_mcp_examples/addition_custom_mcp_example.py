@@ -14,6 +14,9 @@ class AdditionCustomMcpExample(AdditionCustomMcpInterface):
 
     def custom_economic_calendar_mcp(self):
         """Implement custom economic calendar tools"""
+
+        #function name is from await client.list_tools()
+        self.disable_tools(economic_calendar_mcp,"function_name_to_remove")
         @economic_calendar_mcp.tool(title="Custom Economic Impact Analysis")
         async def get_custom_economic_impact(
             context: Context,
@@ -35,6 +38,10 @@ class AdditionCustomMcpExample(AdditionCustomMcpInterface):
 
     def custom_news_mcp(self):
         """Implement custom news tools"""
+
+        #function name is from await client.list_tools()
+        self.disable_tools(news_mcp,"function_name_to_remove")
+
         @news_mcp.tool(title="Custom News Sentiment Analysis")
         async def get_custom_news_sentiment(
             context: Context,
@@ -56,7 +63,11 @@ class AdditionCustomMcpExample(AdditionCustomMcpInterface):
             return f"Custom news trend analysis for keywords: {keywords_str} over last {hours_back} hours"
 
     def custom_price_action_mcp(self):
+
         """Implement custom price action tools"""
+        #function name is from await client.list_tools()
+        self.disable_tools(price_action_mcp,"function_name_to_remove")
+
         @price_action_mcp.tool(title="Custom Support Resistance Levels")
         async def get_custom_support_resistance(
             context: Context,
@@ -91,6 +102,10 @@ class AdditionCustomMcpExample(AdditionCustomMcpInterface):
 
     def custom_traditional_indicator_mcp(self):
         """Implement custom traditional indicator tools"""
+
+        #function name is from await client.list_tools()
+        self.disable_tools(traditional_indicator_mcp,"function_name_to_remove")
+
         @traditional_indicator_mcp.tool(title="Custom Multi-Indicator Strategy")
         async def get_custom_multi_indicator_strategy(
             context: Context,

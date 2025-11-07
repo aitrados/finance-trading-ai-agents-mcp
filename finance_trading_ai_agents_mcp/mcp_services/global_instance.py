@@ -67,16 +67,17 @@ class McpGlobalVar:
 
 
 class CustomMcpServer:
-    def __init__(self):
-        self.mcp_list:List[FastMCP]=[]
-        self._mcp_apps=[]
+    mcp_list: List[FastMCP] = []
+    _mcp_apps = []
 
-    def add_mcp_server(self,mcp:FastMCP):
+
+    @classmethod
+    def add_mcp_server(cls,mcp:FastMCP):
         if not isinstance(mcp,FastMCP):
             return
-        self.mcp_list.append( mcp)
+        cls.mcp_list.append( mcp)
 
 
 
-custom_mcp_server=CustomMcpServer()
+#custom_mcp_server=CustomMcpServer()
 

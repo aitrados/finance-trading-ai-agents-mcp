@@ -18,9 +18,10 @@ class AnalysisDepartment:
     #COMMODITY_FUNDAMENTAL = "commodity_fundamental"
     #STOCK_FUNDAMENTAL = "stock_fundamental"
     NEWS = "news"
+
+    BROKER = "broker"
     MANAGER = "manager"
     DECISION_MAKER="decision_maker"
-
 
     def __init__(self):
         # Initialize core department set
@@ -28,74 +29,44 @@ class AnalysisDepartment:
             self.TRADITIONAL_INDICATOR,
             self.PRICE_ACTION,
             self.ECONOMIC_CALENDAR,
+            self.NEWS,
+            self.BROKER
             #self.COMMODITY_FUNDAMENTAL,
             #self.STOCK_FUNDAMENTAL,
-            self.NEWS,
-            self.MANAGER,
-            self.DECISION_MAKER
+
+            #self.MANAGER,
+            #self.DECISION_MAKER
         }
 
         # Store metadata information for departments
         self._department_metadata: Dict[str, Dict[str, Any]] = {
             self.TRADITIONAL_INDICATOR: {
                 "display_name": "Traditional Indicator",
-                "description": f"I am an expert in financial indicator analysis, specializing in {TraditionalIndicatorOps.valid_indicators}, and other indicators. I can only use the technical indicators the user for price analysis. I can select one or more indicators for analysis.It is best to include the chart period in your question. If it is MA or EMA, you need to tell me their period(s).",
-                "category": "technical"
             },
             self.PRICE_ACTION: {
                 "display_name": "Price Action",
-                "description": f"I am a naked chart trading expert, specializing in recent pure price action analysis, candlestick patterns, support/resistance levels, and market sentiment. I analyze pure price movements without relying on traditional indicators. Focus on price structure, volume patterns, and market psychology",
-                "category": "technical"
             },
             self.ECONOMIC_CALENDAR: {
                 "display_name": "Economic Calendar",
-                "description": "Economic events and calendar data",
-                "category": "fundamental"
             },
 
             self.NEWS: {
                 "display_name": "News",
-                "description": "Financial news and sentiment analysis",
-                "category": "information"
             },
-            self.MANAGER: {
-                "display_name": "Manager",
-                "description": "Department management and coordination",
-                "category": "management"
-            },
-            self.DECISION_MAKER: {
-                "display_name": "Decision_Maker",
-                "description": "the command decision maker",
-                "category": "executor"
-            }
+            self.BROKER: {"display_name": "Broker"},
+
+            #self.MANAGER: {"display_name": "Manager"},
+            #self.DECISION_MAKER: {"display_name": "Decision_Maker"}
 
         }
 
-
-
-    """
-
-    self.COMMODITY_FUNDAMENTAL: {
-        "display_name": "Commodity Fundamental",
-        "description": "Commodity fundamental analysis",
-        "category": "fundamental"
-    },
-    self.STOCK_FUNDAMENTAL: {
-        "display_name": "Stock Fundamental",
-        "description": "Stock fundamental analysis",
-        "category": "fundamental"
-    },
-    """
-    def add_department(self, name: str, display_name: Optional[str] = None,
-                       description: Optional[str] = None, category: str = "custom") -> bool:
+    def add_department(self, name: str, display_name: Optional[str] = None) -> bool:
         """
         Add new analysis department
 
         Args:
             name: Department identifier (recommended to use lowercase letters and underscores)
             display_name: Display name
-            description: Department description
-            category: Department category
 
         Returns:
             bool: Returns True if added successfully, False if already exists
@@ -108,8 +79,6 @@ class AnalysisDepartment:
         # Add metadata
         self._department_metadata[name] = {
             "display_name": display_name or name.replace('_', ' ').title(),
-            "description": description or f"Custom {name} analysis department",
-            "category": category
         }
 
         # Dynamically add class attribute

@@ -333,7 +333,7 @@ ENABLE_RPC_PUBSUB_SERVICE=0
 
 ##LIVE_STREAMING_OHLC_LIMIT:Real-time OHLC data stream length,default 150
 ##Prevent the strategy result from not being obtained due to insufficient ohlc length. For example, the value of MA200 can only be calculated when the length of ohlc is greater than 200.
-#LIVE_STREAMING_OHLC_LIMIT=150
+LIVE_STREAMING_OHLC_LIMIT=149
 
 #MCP LLM Setting
 

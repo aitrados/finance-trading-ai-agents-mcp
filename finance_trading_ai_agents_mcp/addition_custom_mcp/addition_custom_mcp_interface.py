@@ -1,10 +1,13 @@
+import traceback
 from abc import ABC
 
 from aitrados_api.trade_middleware_service.trade_middleware_service_instance import AitradosApiServiceInstance
 from fastmcp import FastMCP, Context
 
 from aitrados_api.universal_interface.timeframe_item_management import TimeframeItemManager
-from finance_trading_ai_agents_mcp.mcp_services.global_instance import custom_mcp_server
+from fastmcp.exceptions import NotFoundError
+
+from finance_trading_ai_agents_mcp.mcp_services.global_instance import CustomMcpServer
 
 '''
 from fastmcp import Context
@@ -41,6 +44,42 @@ class AdditionCustomMcpInterface(ABC):
 
     def __init__(self):
         self._initialize()
+    def disable_tools(self,mcp:FastMCP,*function_name:str):
+        #function_name is from examples/mcp_clients/**.py
+        """
+            await client.list_tools() and gain function name
+
+        async with Client(mcp_config) as client:
+        tool_data=[]
+        for tool in await client.list_tools():
+            tool_data.append(tool.model_dump())
+
+        print(json.dumps(tool_data))
+        """
+
+        for name in function_name:
+            try:
+                mcp.add_tool()
+                mcp.remove_tool(name)
+            except Exception as e:
+                if name=="function_name_to_remove":
+                    continue
+
+                raise ValueError(
+                    """
+                    #function_name is from examples/mcp_clients/**.py
+                    
+                    await client.list_tools() and gain function name
+    
+                    async with Client(mcp_config) as client:
+                    tool_data=[]
+                    for tool in await client.list_tools():
+                        tool_data.append(tool.model_dump())
+    
+                    print(json.dumps(tool_data))
+                    """
+                )
+
 
 
     def _initialize(self):
@@ -66,27 +105,27 @@ class AdditionCustomMcpInterface(ABC):
             pass
         #add apartment
         try:
-            custom_mcp_server.add_mcp_server(self.add_mcp_server_name())
+            CustomMcpServer.add_mcp_server(self.add_mcp_server_name())
         except NotImplementedError:
             pass
         try:
-            custom_mcp_server.add_mcp_server(self.add_mcp_server_name1())
+            CustomMcpServer.add_mcp_server(self.add_mcp_server_name1())
         except NotImplementedError:
             pass
         try:
-            custom_mcp_server.add_mcp_server(self.add_mcp_server_name2())
+            CustomMcpServer.add_mcp_server(self.add_mcp_server_name2())
         except NotImplementedError:
             pass
         try:
-            custom_mcp_server.add_mcp_server(self.add_mcp_server_name3())
+            CustomMcpServer.add_mcp_server(self.add_mcp_server_name3())
         except NotImplementedError:
             pass
         try:
-            custom_mcp_server.add_mcp_server(self.add_mcp_server_name4())
+            CustomMcpServer.add_mcp_server(self.add_mcp_server_name4())
         except NotImplementedError:
             pass
         try:
-            custom_mcp_server.add_mcp_server(self.add_mcp_server_name5())
+            CustomMcpServer.add_mcp_server(self.add_mcp_server_name5())
         except NotImplementedError:
             pass
 

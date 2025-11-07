@@ -41,9 +41,6 @@ def set_mcp_config(app: FastAPI):
 
         mcp_list = {}
         for mcp_type in selected_departments:
-            if mcp_type in ["manager","decision_maker"]:
-                """manager and decision_maker do not need mcp """
-                continue
             mcp_config = {
                 "url": f"{base_url}/{mcp_type}/",
                 "transport": "streamable-http",
