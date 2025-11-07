@@ -92,13 +92,17 @@ if __name__ == "__main__":
     mcp_run()
 ```
 or easy command
+
+
 ```bash
-# auto finding .env file
+# auto finding .env file and config.toml
 finance-trading-ai-agents-mcp #or python -m finance-trading-ai-agents-mcp
 
 #Specify .env file path
 finance-trading-ai-agents-mcp --env-file .env
 ````
+
+[env_example](env_example)  and [config_example.toml](config_example.toml)
 
 ### Intermediate usage
 

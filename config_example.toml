@@ -10,6 +10,7 @@ auto_run_brokers=[]#["okx_demo"]
         spread_trading = "false"
         #proxy_host = "127.0.0.1"
         #proxy_port = 8080
+    #also, you can add IBKR,COINBASE,CHINA STOCK/FUTURES CTP,Binance,etc brokers here
 
 
 

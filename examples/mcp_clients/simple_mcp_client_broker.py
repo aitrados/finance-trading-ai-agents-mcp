@@ -26,9 +26,9 @@ async def main():
 
         # Execute operations
 
-        print(await LlmCallToolConverter(client).call_tool("get_all_accounts" ))
-        print(await LlmCallToolConverter(client).call_tool("get_all_active_orders"))
-        print(await LlmCallToolConverter(client).call_tool("get_all_positions"))
+
+        print(await LlmCallToolConverter(client).call_tool("get_trading_account_summary"))
+
 
 
 asyncio.run(main())

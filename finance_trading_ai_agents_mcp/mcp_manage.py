@@ -1,6 +1,8 @@
 import warnings
 from time import sleep
 
+from aitrados_api.common_lib.tools.toml_manager import TomlManager
+
 from finance_trading_ai_agents_mcp.plugin_service.run_all_plugins import run_all_plugin
 
 warnings.filterwarnings("ignore",
@@ -39,6 +41,8 @@ def mcp_run(port: int = 11999, host: str = "127.0.0.1", addition_custom_mcp_py_f
         AitradosTradeMiddlewareInstance.run_all()
         #waiting TradeMiddlewareService started
         sleep(0.1)
+        if not TomlManager.c:
+            TomlManager.load_toml_file(file=None)
         run_all_plugin()
     # Load custom MCP
     add_addition_custom_mcp(addition_custom_mcp_py_file)
