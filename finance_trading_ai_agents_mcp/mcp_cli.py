@@ -164,36 +164,7 @@ JSON Config Example:
             generate_custom_mcp_template(args.output)
             return
         elif args.command == 'serve' or args.command is None:
-            # Start server
-            print("=" * 60)
-            print("🚀 Finance Trading AI Agents MCP Server")
-            print("=" * 60)
-            print(f"🌐 Server Address: http://{args.host}:{args.port}")
-            #print(f"📡 WebSocket: ws://{args.host}:{args.port}")
-            if args.custom_mcp_file:
-                print(f"📂 Custom MCP: {args.custom_mcp_file}")
-            print("=" * 60)
-            print("📋 Environment Variables:")
 
-            # Show current environment variables (mask sensitive ones)
-            env_vars = ['DEBUG', 'AITRADOS_SECRET_KEY','ENABLE_RPC_PUBSUB_SERVICE', 'OHLC_LIMIT_FOR_LLM',
-                       'RENAME_COLUMN_NAME_MAPPING_FOR_LLM', 'OHLC_COLUMN_NAMES_FOR_LLM',
-                       'LIVE_STREAMING_OHLC_LIMIT']
-
-            for var in env_vars:
-                value = os.getenv(var, 'Not Set')
-                if 'SECRET' in var or 'KEY' in var:
-                    if value != 'Not Set':
-                        masked_value = value[:10] + '...' if len(value) > 10 else '***'
-                        print(f"   🔑 {var}: {masked_value}")
-                    else:
-                        print(f"   🔑 {var}: {value}")
-                else:
-                    print(f"   ⚙️  {var}: {value}")
-
-            print("=" * 60)
-            print("Press Ctrl+C to stop the server")
-            print()
             from .mcp_manage import mcp_run
             mcp_run(
                 port=args.port,

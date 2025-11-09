@@ -4,6 +4,8 @@ import json
 from aitrados_api.common_lib.contant import IntervalName
 from fastmcp import Client
 
+from aitrados_broker.addition_custom_mcps.parameter_validator.send_order_params import OffsetEnum, DirectionEnum, \
+    OrderTypeEnum
 from finance_trading_ai_agents_mcp import analysis_department
 
 from finance_trading_ai_agents_mcp.assistive_tools.assistive_tools_utils import get_client_mcp_config
@@ -27,7 +29,28 @@ async def main():
         # Execute operations
 
 
-        print(await LlmCallToolConverter(client).call_tool("get_trading_account_summary"))
+        print(await LlmCallToolConverter(client).call_tool("get_trading_account_summary",{"broker_name":None}))
+
+
+        cancel_order_data={
+            #"order_id": "251109181143000002",
+            "full_symbol_or_broker_symbol": "CRYPTO:GLOBAL:ETHUSD",
+            "broker_name": None
+        }
+        print(await LlmCallToolConverter(client).call_tool("cancel_order", cancel_order_data))
+        return
+        send_order_data={
+            "full_symbol_or_broker_symbol":"BTC-USDT-SWAP",#CRYPTO:GLOBAL:BTCUSD  "ETH-USDT-SWAP"
+            "type":OrderTypeEnum.LIMIT,
+            "volume":0.01,
+            "price":2800,
+            "offset":OffsetEnum.OPEN,
+            "direction":DirectionEnum.LONG,
+             "broker_name": None
+
+        }
+
+        print(await LlmCallToolConverter(client).call_tool("send_order",send_order_data))
 
 
 

@@ -1,5 +1,33 @@
+#When MCP starts, the auto_run_brokers trading gateway will be started automatically.
 auto_run_brokers=[]#["okx_demo"]
 [broker]
+    [broker.ib]
+        display_name="ib simulation"
+        provider = "ib"
+        tws_host = "127.0.0.1"
+        tws_port = 7497
+        client_id = 1
+        account = ""
+    [broker.ctp]
+        display_name="CTP simulation"
+        provider = "ctp"
+        username = "XXXXX"
+        password = "XXXX"
+        broker_id = "XXX"
+        trade_server = "XXXX"
+        market_server = "XXXX"
+        product_name = "XXXX"
+        auth_code = "XXXX"
+    [broker.zhongtaizhengquan]
+        display_name="中泰证券模拟盘"
+        provider = "xtp"
+        username = "xxxxx"
+        password = "xxxxx"
+        client_id = "xxxxx"
+        trade_server = "xxxxx"
+        market_server = "xxxxx"
+        auth_code = "xxxxx"
+
     [broker.okx_demo]
         display_name="OKX simulation"
         provider = "okx"
@@ -10,7 +38,32 @@ auto_run_brokers=[]#["okx_demo"]
         spread_trading = "false"
         #proxy_host = "127.0.0.1"
         #proxy_port = 8080
-    #also, you can add IBKR,COINBASE,CHINA STOCK/FUTURES CTP,Binance,etc brokers here
+    [broker.binance_spot_demo]
+        display_name="binance spot simulation"
+        provider = "binance_spot"
+        api_key = "4RmZ53vFgNj5wIGjf1477iIc3SoHrMIEA69HmDBR8zHlyTOG1N2gqg87YHxJaWUX"
+        secret_key = "8CNNnme02sWbZ27z1rclaKIlkIRIwpHJqLPXUbGesJpzeegOduvak1KAPpjCrata"
+        server = "TESTNET"
+        #proxy_host = "127.0.0.1"
+        #proxy_port = 12334
+    [broker.binance_linear_demo]
+        display_name="binance linear simulation"
+        provider = "binance_linear"
+        api_key = "XXXX"
+        secret_key = "XXXX"
+        server = "TESTNET"
+        #proxy_host = "127.0.0.1"
+        #proxy_port = 12334
+    [broker.binance_inverse_demo]
+        display_name="binance inverse simulation"
+        provider = "binance_inverse"
+        api_key = "XXXX"
+        secret_key = "XXXX"
+        server = "TESTNET"
+        #proxy_host = "127.0.0.1"
+        #proxy_port = 12334
+
+
 
 
 

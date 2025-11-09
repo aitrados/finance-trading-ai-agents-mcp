@@ -4,6 +4,7 @@ from time import sleep
 from aitrados_api.common_lib.tools.toml_manager import TomlManager
 
 from finance_trading_ai_agents_mcp.plugin_service.run_all_plugins import run_all_plugin
+from finance_trading_ai_agents_mcp.utils.common_utils import show_environment_info
 
 warnings.filterwarnings("ignore",
                         category=DeprecationWarning,
@@ -44,6 +45,7 @@ def mcp_run(port: int = 11999, host: str = "127.0.0.1", addition_custom_mcp_py_f
         if not TomlManager.c:
             TomlManager.load_toml_file(file=None)
         run_all_plugin()
+    show_environment_info(host, port, addition_custom_mcp_py_file)
     # Load custom MCP
     add_addition_custom_mcp(addition_custom_mcp_py_file)
 

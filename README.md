@@ -20,10 +20,11 @@ Join our community for discussions, support, and updates!
 - 🚀 One-click deployment: Quickly spin up a local financial MCP service
 - 🏢 Departmental architecture: Simulates real-world financial company departments
 - 📊 Comprehensive analysis: Traditional technical indicators + price action analysis
-- 📅 Real-time data: Economic calendar, fundamentals, and news integration
+- 📅 Real-time data: Economic calendar, fundamentals,broker/securities information ,and news integration
 - 🤖 AI integration: Interfaces optimized for LLMs
 - ⚡ High performance: Real-time streaming OHLC data processing
 - 🔧 Extensible: Support for custom MCP services
+- MCP can call the broker to query account information, place orders, and cancel orders.
 - 🪩 Support local RPC/PubSub service.you can cross process/software/code languages communication.
 
 ## Fastest experience
