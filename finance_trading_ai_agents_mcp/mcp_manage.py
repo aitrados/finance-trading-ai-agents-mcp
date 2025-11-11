@@ -16,7 +16,6 @@ warnings.filterwarnings("ignore",
                         category=DeprecationWarning,
                         message=r".*datetime.datetime.utcnow().*")
 
-
 import os
 import traceback
 
@@ -54,7 +53,8 @@ def mcp_run(port: int = 11999, host: str = "127.0.0.1", addition_custom_mcp_py_f
         app="finance_trading_ai_agents_mcp.mcp_services.mcp_instance:app",
         host=host,
         port=port,
-        reload=False
+        reload=False,
+
     )
 
 
