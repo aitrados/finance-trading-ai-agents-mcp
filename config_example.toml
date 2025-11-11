@@ -41,8 +41,8 @@ auto_run_brokers=[]#["okx_demo"]
     [broker.binance_spot_demo]
         display_name="binance spot simulation"
         provider = "binance_spot"
-        api_key = "4RmZ53vFgNj5wIGjf1477iIc3SoHrMIEA69HmDBR8zHlyTOG1N2gqg87YHxJaWUX"
-        secret_key = "8CNNnme02sWbZ27z1rclaKIlkIRIwpHJqLPXUbGesJpzeegOduvak1KAPpjCrata"
+        api_key = "XXXX"
+        secret_key = "XXXX"
         server = "TESTNET"
         #proxy_host = "127.0.0.1"
         #proxy_port = 12334

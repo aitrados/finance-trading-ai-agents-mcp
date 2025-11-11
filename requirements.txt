@@ -1,3 +1,4 @@
-aitrados-api>=0.1.95
+aitrados-api>=0.1.97
 fastapi>=0.118.0
 fastmcp>=2.12.4
+aitrados-broker>=0.0.17
