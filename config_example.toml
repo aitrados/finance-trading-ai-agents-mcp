@@ -27,7 +27,13 @@ auto_run_brokers=[]#["okx_demo"]
         trade_server = "xxxxx"
         market_server = "xxxxx"
         auth_code = "xxxxx"
-
+    [broker.mt5]
+        #install aitrados-mt5 plugin to MT5
+        # download plugin https://raw.githubusercontent.com/aitrados/finance-trading-ai-agents-mcp/refs/heads/main/assets/aitrados_mt5.zip
+        provider = "mt5"
+        server_host = "127.0.0.1"
+        req_port =  "6888"
+        sub_port="8666"
     [broker.okx_demo]
         display_name="OKX simulation"
         provider = "okx"
